@@ -1,36 +1,36 @@
 import { RouteRecordRaw } from 'vue-router';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
-import analysis from '~/views/index/analysis.vue';
-const console = () => import('~/views/index/console.vue');
+const access_test = () => import('~/views/test/access-test.vue');
+const form_test = () => import('~/views/test/form-test.vue');
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    redirect: '/analysis',
+    path: '/test',
     component: DefaultLayout,
+    redirect: '/test/access',
     meta: {
-      title: '首页',
+      title: '业务测试',
       icon: '',
       access: '',
       badge: '',
     },
     children: [
       {
-        path: '/analysis',
-        name: analysis.name,
-        component: analysis,
+        path: '/test/access',
+        name: access_test.name,
+        component: access_test,
         meta: {
-          title: '分析页',
+          title: '权限测试',
           icon: '',
           access: '',
           badge: '',
         },
       },
       {
-        path: '/console',
-        name: console.name,
-        component: console,
+        path: '/test/form',
+        name: form_test.name,
+        component: form_test,
         meta: {
-          title: '控制台',
+          title: '表格测试',
           icon: '',
           access: '',
           badge: '',

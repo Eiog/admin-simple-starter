@@ -1,14 +1,38 @@
 <script setup lang="ts">
-const { darkMode } = storeToRefs(useAppStore());
+import XsrLayouts from 'xsr-layouts';
+const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
+  useAppStore(),
+);
 </script>
 <template>
   <naive-provider :dark="darkMode">
-    <div wfull hfull flex-center bg="white dark:gray-900">
-      <div max-w-xl hfull flex-center select-none flex="col">
-        <slot />
-        <default-menu />
-      </div>
-    </div>
+    <xsr-layouts
+      :mode="layoutsMode"
+      :collapsed="sideCollapsed"
+      :header="layouts.header"
+      :sider="layouts.sider"
+      :footer="layouts.footer"
+      :main="{ padding: '10px' }"
+    >
+      <template #header>
+        <div wfull hfull flex="~ col" border="b">
+          <default-header flex-1 />
+          <default-tabs />
+        </div>
+      </template>
+      <template #sider>
+        <toggle-collapsed />
+        <div wfull hfull bg="white" shadow-xl>
+          <default-brand />
+          <default-menu></default-menu>
+        </div>
+      </template>
+      <template #footer>
+        <div>footer</div>
+      </template>
+      <router-entry />
+      <theme-panel />
+    </xsr-layouts>
   </naive-provider>
 </template>
 <style scoped lang="less"></style>

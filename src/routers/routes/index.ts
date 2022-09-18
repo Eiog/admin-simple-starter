@@ -1,9 +1,11 @@
 import { RouteRecordRaw } from 'vue-router';
 import indexRoutes from './index.routes';
-import aboutRoutes from './about.routes';
-const _routes = [...indexRoutes, ...aboutRoutes];
+import testRoutes from './test.routes';
+console.log(indexRoutes);
+
 const routes: RouteRecordRaw[] = [
-  ..._routes,
+  ...indexRoutes,
+  ...testRoutes,
   {
     path: '/not-found',
     name: 'not-found',
