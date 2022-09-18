@@ -16,7 +16,7 @@ const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
     >
       <template #header>
         <div wfull hfull flex="~ col" border="b">
-          <default-header flex-1 />
+          <default-header />
           <default-tabs />
         </div>
       </template>

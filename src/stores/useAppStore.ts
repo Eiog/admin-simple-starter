@@ -16,7 +16,7 @@ export const useAppStore = defineStore(
       header: {
         show: true,
         fixed: true,
-        height: 80,
+        height: 100,
       },
       footer: {
         show: true,

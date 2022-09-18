@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div wfull flex items-center>
+  <div wfull h-60px flex items-center px3 bg="white" border="b">
     <breadcrumb />
     <header-controller />
   </div>
