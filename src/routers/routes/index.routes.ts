@@ -9,9 +9,13 @@ const routes: RouteRecordRaw[] = [
     component: DefaultLayout,
     meta: {
       title: '首页',
+      description: '',
       icon: '',
       access: '',
       badge: '',
+      show: true,
+      sort: 0,
+      root: false,
     },
     children: [
       {

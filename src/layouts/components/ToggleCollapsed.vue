@@ -15,7 +15,7 @@ const { sideCollapsed } = storeToRefs(useAppStore());
     flex-center
     cursor-pointer
     shadow="md hover:xl"
-    bg="white"
+    bg="white dark:dark3"
     @click="sideCollapsed = !sideCollapsed"
   >
     <i

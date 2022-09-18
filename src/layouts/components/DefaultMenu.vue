@@ -3,7 +3,9 @@ import { NIcon } from 'naive-ui';
 import type { MenuOption } from 'naive-ui';
 import RiCpuLine from '~icons/ri/cpu-line';
 import { Component } from 'vue';
-const { sideCollapsed, layouts } = storeToRefs(useAppStore());
+import { useAccessStore } from '~/stores/useAccessStore';
+const { sideCollapsed, layouts, darkMode } = storeToRefs(useAppStore());
+const { baseRoutes } = storeToRefs(useAccessStore());
 const renderIcon = (icon: Component) => {
   return h(NIcon, null, {
     default: () => h(icon),
@@ -23,6 +25,7 @@ const menuOptions: MenuOption[] = [
     :collapsed="sideCollapsed"
     :collapsed-width="layouts.sider.collapsedWidth"
     :collapsed-icon-size="26"
+    :inverted="darkMode"
     mode="vertical"
     :options="menuOptions"
   />

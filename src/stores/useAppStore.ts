@@ -11,7 +11,7 @@ export const useAppStore = defineStore(
       sider: {
         show: true,
         width: 200,
-        collapsedWidth: 56,
+        collapsedWidth: 60,
       },
       header: {
         show: true,

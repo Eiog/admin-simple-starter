@@ -22,7 +22,7 @@ const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
       </template>
       <template #sider>
         <toggle-collapsed />
-        <div wfull hfull bg="white" shadow-xl>
+        <div wfull hfull bg="white dark:dark5" shadow-xl>
           <default-brand />
           <default-menu></default-menu>
         </div>
