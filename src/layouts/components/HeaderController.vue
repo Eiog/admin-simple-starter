@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DropdownOption, NAvatar } from 'naive-ui';
 const { darkMode, themePanelShow } = storeToRefs(useAppStore());
+const { userInfo } = storeToRefs(useAccessStore());
 const options: DropdownOption[] = [
   {
     key: 'header',
@@ -11,12 +12,16 @@ const options: DropdownOption[] = [
           NAvatar,
           {
             round: true,
-            src: 'http://aman-blog-oss.oss-cn-beijing.aliyuncs.com/2022-8-5/20190927103132_ZPTkU-2a8f20438489e4068a057f5e0f5458c0.jpeg',
+            src: userInfo.value?.avatar,
           },
           {},
         ),
         h('div', { class: 'flex flex-col' }, [
-          h('span', { class: 'text-lg' }, { default: () => '阿满' }),
+          h(
+            'span',
+            { class: 'text-lg' },
+            { default: () => userInfo.value?.name },
+          ),
         ]),
       ]);
     },
@@ -57,6 +62,9 @@ const handleSelect = () => {};
     <n-button secondary>
       <i text-xl i-ri-fullscreen-fill></i>
     </n-button>
+    <n-button secondary>
+      <i text-xl i-ri-translate></i>
+    </n-button>
     <n-dropdown
       trigger="hover"
       :show-arrow="true"
@@ -69,7 +77,7 @@ const handleSelect = () => {};
         cursor-pointer
         size="small"
         round
-        src="http://aman-blog-oss.oss-cn-beijing.aliyuncs.com/2022-8-5/20190927103132_ZPTkU-2a8f20438489e4068a057f5e0f5458c0.jpeg"
+        :src="userInfo?.avatar"
       ></n-avatar>
     </n-dropdown>
   </div>

@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { keepAliveRoute } = storeToRefs(useAccessStore());
+</script>
 <template>
   <router-view v-slot="{ Component }">
     <template v-if="Component">
       <transition mode="out-in">
-        <keep-alive>
+        <keep-alive :include="keepAliveRoute">
           <component :is="Component"></component>
         </keep-alive>
       </transition>
@@ -17,12 +19,12 @@
 }
 
 .v-enter-from {
-  transform: scale(0.95);
+  transform: translateX(-10px) scale(0.98);
   opacity: 0;
 }
 
 .v-leave-to {
-  transform: scale(1.05);
+  transform: translateX(10px) scale(1.02);
   opacity: 0;
 }
 </style>

@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NMenu: typeof import('naive-ui')['NMenu']
     NPopover: typeof import('naive-ui')['NPopover']
+    NSelect: typeof import('naive-ui')['NSelect']
     NTag: typeof import('naive-ui')['NTag']
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterEntry: typeof import('./../layouts/RouterEntry.vue')['default']

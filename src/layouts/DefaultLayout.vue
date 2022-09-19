@@ -15,7 +15,7 @@ const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
       :main="{ padding: '10px' }"
     >
       <template #header>
-        <div wfull hfull flex="~ col" border="b">
+        <div wfull hfull flex="~ col" border="b" bg="white dark:dark8">
           <default-header />
           <default-tabs />
         </div>
@@ -28,9 +28,11 @@ const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
         </div>
       </template>
       <template #footer>
-        <div>footer</div>
+        <div wfull hfull bg="white dark:dark8">footer</div>
       </template>
-      <router-entry />
+      <div p3 overflow-hidden bg="gray1 dark:dark8">
+        <router-entry />
+      </div>
       <theme-panel />
     </xsr-layouts>
   </naive-provider>

@@ -1,7 +1,11 @@
 import { RouteRecordRaw } from 'vue-router';
+import { markRaw } from 'vue';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
 const access_test = () => import('~/views/test/access-test.vue');
 const form_test = () => import('~/views/test/form-test.vue');
+import RiSwordFill from '~icons/ri/sword-fill';
+import RiAdminFill from '~icons/ri/admin-fill';
+import RiFolderSettingsFill from '~icons/ri/folder-settings-fill';
 const routes: RouteRecordRaw[] = [
   {
     path: '/test',
@@ -9,9 +13,14 @@ const routes: RouteRecordRaw[] = [
     redirect: '/test/access',
     meta: {
       title: '业务测试',
-      icon: '',
-      access: '',
+      description: '/test',
+      icon: markRaw(RiSwordFill),
+      access: 0b0001,
       badge: '',
+      show: true,
+      sort: 0,
+      root: false,
+      keepAlive: true,
     },
     children: [
       {
@@ -20,9 +29,14 @@ const routes: RouteRecordRaw[] = [
         component: access_test,
         meta: {
           title: '权限测试',
-          icon: '',
-          access: '',
+          description: '/test/access',
+          icon: markRaw(RiAdminFill),
+          access: 0b0001,
           badge: '',
+          show: true,
+          sort: 0,
+          root: false,
+          keepAlive: true,
         },
       },
       {
@@ -31,9 +45,14 @@ const routes: RouteRecordRaw[] = [
         component: form_test,
         meta: {
           title: '表格测试',
-          icon: '',
-          access: '',
+          description: '/test/form',
+          icon: markRaw(RiFolderSettingsFill),
+          access: 0b0001,
           badge: '',
+          show: true,
+          sort: 0,
+          root: false,
+          keepAlive: true,
         },
       },
     ],
