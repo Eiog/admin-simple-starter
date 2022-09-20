@@ -1,7 +1,9 @@
 <script setup lang="ts" name="analysis">
-console.log(1);
+const { t } = useI18n();
 </script>
 <template>
-  <div wfull h200 bg-white>analysis</div>
+  <div wfull h200 bg-white>
+    {{ t('welcome') }}
+  </div>
 </template>
 <style scoped lang="less"></style>

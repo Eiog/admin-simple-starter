@@ -1,21 +1,20 @@
 import { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
-const access_test = () => import('~/views/test/access-test.vue');
-const form_test = () => import('~/views/test/form-test.vue');
+const super_page = () => import('~/views/access-test/super-is-show.vue');
 import RiSwordFill from '~icons/ri/sword-fill';
 import RiAdminFill from '~icons/ri/admin-fill';
 import RiFolderSettingsFill from '~icons/ri/folder-settings-fill';
 const routes: RouteRecordRaw[] = [
   {
-    path: '/test',
+    path: '/access-test',
     component: DefaultLayout,
-    redirect: '/test/access',
+    redirect: '/access-test',
     meta: {
-      title: '业务测试',
-      description: '/test',
+      title: '超级权限可见',
+      description: '/access-test/super-is-show',
       icon: markRaw(RiSwordFill),
-      access: 0b0001,
+      access: 0b1111,
       badge: '',
       show: true,
       sort: 0,
@@ -25,30 +24,13 @@ const routes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/test/access',
-        name: access_test.name,
-        component: access_test,
+        path: '/access-test/super-is-show',
+        name: super_page.name,
+        component: super_page,
         meta: {
-          title: '权限测试',
-          description: '/test/access',
+          title: '超级权限才能看见我',
+          description: '超级权限才能看见我',
           icon: markRaw(RiAdminFill),
-          access: 0b0001,
-          badge: '',
-          show: true,
-          sort: 0,
-          root: false,
-          keepAlive: true,
-          requiresAuth: true,
-        },
-      },
-      {
-        path: '/test/form',
-        name: form_test.name,
-        component: form_test,
-        meta: {
-          title: '表格测试',
-          description: '/test/form',
-          icon: markRaw(RiFolderSettingsFill),
           access: 0b0001,
           badge: '',
           show: true,

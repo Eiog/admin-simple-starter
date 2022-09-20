@@ -1,14 +1,13 @@
 import { RouteRecordRaw } from 'vue-router';
 import { MenuOption, NIcon } from 'naive-ui';
+import _ from 'lodash-es';
+import { colord } from 'colord';
 export const verifyAuth = (routes: RouteRecordRaw[], access?: number) => {
   const authRoutes: RouteRecordRaw[] = [];
   routes.forEach((route) => {
     const requireAccess = route.meta?.access;
     if (requireAccess && access && (access & requireAccess) === requireAccess) {
-      if (route.children) {
-        route.children = verifyAuth(route.children, access);
-      }
-      let authRoute = route;
+      let authRoute = _.cloneDeep(route);
       if (route.children)
         authRoute.children = verifyAuth(route.children, access);
       authRoutes.push(authRoute);
@@ -19,7 +18,9 @@ export const verifyAuth = (routes: RouteRecordRaw[], access?: number) => {
 export const routes2Menu = (routes: RouteRecordRaw[]) => {
   const authMenu: MenuOption[] = [];
   routes = routes.sort((a, b) => {
-    return a.meta && b.meta ? b.meta.sort - a.meta.sort : 0;
+    return a.meta && b.meta && a.meta.sort && b.meta.sort
+      ? b.meta.sort - a.meta.sort
+      : 0;
   });
   routes.forEach((route) => {
     if (route.meta && route.meta.show) {
@@ -73,4 +74,12 @@ export const keepAliveName = (routes: RouteRecordRaw[]) => {
     if (route.children) keepAliveNames.push(...keepAliveName(route.children));
   });
   return keepAliveNames;
+};
+export const getSatusColor = (color: string = '#ff461f') => {
+  return {
+    color: color,
+    hover: colord(color).lighten(0.1).toHex(),
+    pressed: colord(color).darken(0.1).toHex(),
+    suppl: colord(color).lighten(0.1).toHex(),
+  };
 };

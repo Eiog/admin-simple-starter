@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import XsrLayouts from 'xsr-layouts';
-const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
-  useAppStore(),
-);
+const { darkMode, layouts, sideCollapsed, layoutsMode, naiveThemeOverrides } =
+  storeToRefs(useAppStore());
 </script>
 <template>
-  <naive-provider :dark="darkMode">
+  <naive-provider :dark="darkMode" :theme-overrides="naiveThemeOverrides">
     <xsr-layouts
       :mode="layoutsMode"
       :collapsed="sideCollapsed"
@@ -33,7 +32,6 @@ const { darkMode, layouts, sideCollapsed, layoutsMode } = storeToRefs(
       <div p3 overflow-hidden bg="gray1 dark:dark8">
         <router-entry />
       </div>
-      <theme-panel />
     </xsr-layouts>
   </naive-provider>
 </template>

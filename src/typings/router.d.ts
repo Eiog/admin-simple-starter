@@ -8,8 +8,8 @@ declare module 'vue-router' {
     requiresAuth?: boolean;
     access?: number;
     badge?: string | number;
-    show: boolean;
-    sort: number;
+    show?: boolean;
+    sort?: number;
     root?: boolean;
     keepAlive?: boolean;
   }

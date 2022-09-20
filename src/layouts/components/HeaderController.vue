@@ -1,85 +1,12 @@
-<script setup lang="ts">
-import { DropdownOption, NAvatar } from 'naive-ui';
-const { darkMode, themePanelShow } = storeToRefs(useAppStore());
-const { userInfo } = storeToRefs(useAccessStore());
-const options: DropdownOption[] = [
-  {
-    key: 'header',
-    type: 'render',
-    render: () => {
-      return h('div', { class: 'flex-center gap2 px3 py1' }, [
-        h(
-          NAvatar,
-          {
-            round: true,
-            src: userInfo.value?.avatar,
-          },
-          {},
-        ),
-        h('div', { class: 'flex flex-col' }, [
-          h(
-            'span',
-            { class: 'text-lg' },
-            { default: () => userInfo.value?.name },
-          ),
-        ]),
-      ]);
-    },
-  },
-  {
-    key: 'header-divider',
-    type: 'divider',
-  },
-  {
-    key: 'setting',
-    label: '个人设置',
-    icon: () => {
-      return h('i', { class: 'i-ri-user-settings-fill' }, {});
-    },
-  },
-  {
-    key: 'header-divider',
-    type: 'divider',
-  },
-  {
-    key: 'logout',
-    label: '退出登录',
-    icon: () => {
-      return h('i', { class: 'i-ri-logout-circle-fill' }, {});
-    },
-  },
-];
-const handleSelect = () => {};
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div ml-auto flex-center gap3 mr10>
-    <n-button secondary @click="themePanelShow = true">
-      <i text-xl i-ri-palette-fill></i>
-    </n-button>
-    <n-button secondary @click="darkMode = !darkMode">
-      <i text-xl :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"></i>
-    </n-button>
-    <n-button secondary>
-      <i text-xl i-ri-fullscreen-fill></i>
-    </n-button>
-    <n-button secondary>
-      <i text-xl i-ri-translate></i>
-    </n-button>
-    <n-dropdown
-      trigger="hover"
-      :show-arrow="true"
-      :options="options"
-      @select="handleSelect"
-    >
-      <n-avatar
-        ml3
-        mr3
-        cursor-pointer
-        size="small"
-        round
-        :src="userInfo?.avatar"
-      ></n-avatar>
-    </n-dropdown>
+  <div ml-auto flex-center gap3 mr6>
+    <user-droupdown />
+    <message-droupdown />
+    <toggle-theme />
+    <toggle-dark-mode />
+    <toggle-full-screen />
+    <toggle-language />
   </div>
 </template>
 <style scoped lang="less"></style>

@@ -22,6 +22,7 @@ const routes: RouteRecordRaw[] = [
       sort: 0,
       root: false,
       keepAlive: true,
+      requiresAuth: true,
     },
     children: [
       {
@@ -38,6 +39,7 @@ const routes: RouteRecordRaw[] = [
           sort: 0,
           root: false,
           keepAlive: true,
+          requiresAuth: true,
         },
       },
       {
@@ -48,12 +50,13 @@ const routes: RouteRecordRaw[] = [
           title: '控制台',
           description: 'console',
           icon: markRaw(RiAppsFill),
-          access: 0b1111,
+          access: 0b0001,
           badge: '',
           show: true,
-          sort: 1,
-          root: true,
+          sort: 0,
+          root: false,
           keepAlive: true,
+          requiresAuth: true,
         },
       },
     ],

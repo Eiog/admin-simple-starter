@@ -47,6 +47,7 @@ export default defineConfig(() => {
           '@vueuse/core',
           'pinia',
           'vue-router',
+          'vue-i18n',
           {
             'naive-ui': [
               'useDialog',

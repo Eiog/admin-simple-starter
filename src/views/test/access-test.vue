@@ -35,13 +35,15 @@ const handleUpdateValue = (value: number[]) => {
 };
 </script>
 <template>
-  <div wfull h200 bg-white>
-    <n-select
-      v-model:value="accessValue"
-      :options="options"
-      multiple
-      @update-value="handleUpdateValue"
-    />
+  <div wfull>
+    <n-card title="权限测试" rounded-xl shadow-md w="1/2">
+      <n-select
+        v-model:value="accessValue"
+        :options="options"
+        multiple
+        @update-value="handleUpdateValue"
+      />
+    </n-card>
   </div>
 </template>
 <style scoped lang="less"></style>
