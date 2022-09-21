@@ -4,13 +4,26 @@ const formValue = ref({
   account: 'admin',
   password: 'admin',
 });
+const loading = ref(false);
 const rules = {};
 const redirect = (useRoute().query.redirect as string) || '/';
 const router = useRouter();
 const handleLogin = () => {
-  token.value = 'token';
-  refreshed.value = true;
-  router.push(redirect);
+  loading.value = true;
+  mockLogin().then(() => {
+    loading.value = false;
+    token.value = 'token';
+    refreshed.value = true;
+    window.$notification.success({ title: '欢迎回来', duration: 3000 });
+    router.push(redirect);
+  });
+};
+const mockLogin = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve(true);
+    }, 3000);
+  });
 };
 </script>
 <template>
@@ -39,7 +52,9 @@ const handleLogin = () => {
           />
         </n-form-item>
         <n-form-item>
-          <n-button type="primary" block @click="handleLogin">登录</n-button>
+          <n-button :loading="loading" type="primary" block @click="handleLogin"
+            >登录</n-button
+          >
         </n-form-item>
       </n-form>
     </div>

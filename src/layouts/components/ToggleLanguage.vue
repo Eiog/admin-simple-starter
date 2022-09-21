@@ -7,7 +7,7 @@ const changeLanguage = () => {
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-button secondary @click="changeLanguage">
+      <n-button quaternary @click="changeLanguage">
         <i text-xl i-ri-translate></i>
       </n-button>
     </template>

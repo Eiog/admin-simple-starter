@@ -4,7 +4,7 @@ const { darkMode } = storeToRefs(useAppStore());
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-button secondary @click="darkMode = !darkMode">
+      <n-button quaternary @click="darkMode = !darkMode">
         <i text-xl :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"></i>
       </n-button>
     </template>

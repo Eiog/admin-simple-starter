@@ -13,10 +13,10 @@ const options: DropdownOption[] = [
 </script>
 <template>
   <n-dropdown trigger="click" :show-arrow="true" :options="options">
-    <n-badge :value="0">
+    <n-badge :value="3">
       <n-tooltip trigger="hover">
         <template #trigger>
-          <n-button secondary>
+          <n-button quaternary>
             <i text-xl i-ri-message-3-fill></i>
           </n-button>
         </template>

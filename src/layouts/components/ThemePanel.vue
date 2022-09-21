@@ -30,7 +30,7 @@ const handleMoreClick = () => {
 };
 </script>
 <template>
-  <n-drawer v-model:show="themePanelShow" :width="360">
+  <n-drawer v-model:show="themePanelShow" :width="320">
     <n-drawer-content :native-scrollbar="false">
       <template #header>
         <div flex items-center gap1 cursor-default>
@@ -81,8 +81,8 @@ const handleMoreClick = () => {
                 :key="index"
               >
                 <div
-                  w8
-                  h8
+                  w6
+                  h6
                   flex-center
                   rounded-md
                   overflow-hidden
@@ -97,10 +97,10 @@ const handleMoreClick = () => {
                   ></i>
                 </div>
               </div>
-              <div wfull hmin py1 flex-center>
+              <div wfull py1 flex-center>
                 <div
-                  w8
-                  h8
+                  w6
+                  h6
                   flex-center
                   rounded-md
                   overflow-hidden

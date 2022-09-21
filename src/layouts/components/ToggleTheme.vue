@@ -4,7 +4,7 @@ const { themePanelShow } = storeToRefs(useAppStore());
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-button secondary @click="themePanelShow = true">
+      <n-button quaternary @click="themePanelShow = true">
         <i text-xl i-ri-palette-fill></i>
       </n-button>
     </template>

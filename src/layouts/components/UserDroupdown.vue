@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { DropdownOption, NAvatar } from 'naive-ui';
-const { userInfo } = storeToRefs(useAccessStore());
+const { userInfo, refreshed, token } = storeToRefs(useAccessStore());
+const router = useRouter();
+const handleLogOut = () => {
+  token.value = undefined;
+  refreshed.value = false;
+  router.push('/login');
+};
 const options: DropdownOption[] = [
   {
     key: 'header',
@@ -43,6 +49,9 @@ const options: DropdownOption[] = [
   {
     key: 'logout',
     label: '退出登录',
+    props: {
+      onClick: handleLogOut,
+    },
     icon: () => {
       return h('i', { class: 'i-ri-logout-circle-fill' }, {});
     },

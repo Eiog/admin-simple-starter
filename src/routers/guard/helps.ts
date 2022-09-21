@@ -24,7 +24,12 @@ export function useNProgress() {
 export const useTab = (to: RouteLocationNormalized) => {
   if (!to.meta.show) return;
   const { setTab } = useAccessStore();
-  setTab({ title: to.meta.title, path: to.path, icon: to.meta.icon });
+  setTab({
+    title: to.meta.title,
+    path: to.path,
+    access: to.meta.access,
+    icon: to.meta.icon,
+  });
 };
 export const useAuth = (
   to: RouteLocationNormalized,
@@ -32,53 +37,20 @@ export const useAuth = (
   next: NavigationGuardNext,
 ) => {
   const { access, refreshed } = storeToRefs(useAccessStore());
-  console.log(from, to);
+  if (!refreshed.value && to.meta.requiresAuth)
+    return next(`/login?redirect=${to.path}`);
 
-  if (!refreshed.value && to.meta.requiresAuth) {
-    next(`/login?redirect=${to.path}`);
-  }
-  if (refreshed.value && to.path === '/login') next(from.path);
+  if (refreshed.value && to.path === '/login') return next(from.path);
   if (refreshed.value && to.meta.requiresAuth) {
     if (
       access.value &&
       to.meta.access &&
       verifyAuth(access.value, to.meta.access)
-    ) {
-      next();
-    }
-    next(from.path);
+    )
+      return next();
+    return next('/no-access');
   }
-  if (!to.meta.requiresAuth) next();
+  if (!to.meta.requiresAuth) return next();
 };
 const verifyAuth = (access: number, requireAccess: number) =>
   (access & requireAccess) === requireAccess;
-const refreshToken = () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 5000);
-  });
-const routerRedirect = (
-  to: RouteLocationNormalized,
-  from: RouteLocationNormalized,
-  next: NavigationGuardNext,
-  token?: string,
-  access?: number,
-) => {
-  if (!token && to.meta.requiresAuth) {
-    next('/login');
-  }
-  if (token && to.path === '/login') {
-    next(from.path);
-  }
-  if (token && to.meta.requiresAuth) {
-    if (access && to.meta.access && verifyAuth(access, to.meta.access)) {
-      next();
-    } else {
-      next(from.path);
-    }
-  }
-  if (!to.meta.requiresAuth) {
-    next();
-  }
-};

@@ -31,7 +31,7 @@ const routes: RouteRecordRaw[] = [
           title: '超级权限才能看见我',
           description: '超级权限才能看见我',
           icon: markRaw(RiAdminFill),
-          access: 0b0001,
+          access: 0b1111,
           badge: '',
           show: true,
           sort: 0,

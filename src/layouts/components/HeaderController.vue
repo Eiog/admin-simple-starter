@@ -7,6 +7,7 @@
     <toggle-dark-mode />
     <toggle-full-screen />
     <toggle-language />
+    <toggle-notification />
   </div>
 </template>
 <style scoped lang="less"></style>

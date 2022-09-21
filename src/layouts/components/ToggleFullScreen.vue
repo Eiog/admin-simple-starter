@@ -4,7 +4,7 @@ const { toggle } = useFullscreen();
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-button secondary @click="toggle">
+      <n-button quaternary @click="toggle">
         <i text-xl i-ri-fullscreen-fill></i>
       </n-button>
     </template>

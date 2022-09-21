@@ -3,8 +3,9 @@ import routes from '~/routers/routes';
 import { verifyAuth, routes2Menu, keepAliveName } from './helps';
 import { Component } from 'vue';
 type Tab = {
-  title?: string;
-  path?: string;
+  title: string;
+  path: string;
+  access: number;
   icon?: Component;
 };
 export const useAccessStore = defineStore(
@@ -25,12 +26,19 @@ export const useAccessStore = defineStore(
     });
     const access = ref(0b1111);
     const token = ref<string | undefined>();
-    const refreshed = ref(false);
+    const refreshed = ref(true);
     const currentTabPath = ref();
     const currentTabIndex = computed(() =>
-      tabs.value.findIndex((item) => item.path === currentTabPath.value),
+      authTabs.value.findIndex((item) => item.path === currentTabPath.value),
     );
     const tabs = ref<Tab[]>([]);
+    const authTabs = computed(() => {
+      const _tabs: Tab[] = [];
+      tabs.value.forEach((tab) => {
+        if ((access.value & tab.access) === tab.access) _tabs.push(tab);
+      });
+      return _tabs;
+    });
     const setTab = (route: Tab) => {
       currentTabPath.value = route.path;
       if (tabs.value?.some((item) => item.path === route.path)) return;
@@ -50,6 +58,7 @@ export const useAccessStore = defineStore(
       currentTabIndex,
       currentTabPath,
       setTab,
+      authTabs,
     };
   },
   {

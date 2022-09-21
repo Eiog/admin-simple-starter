@@ -19,12 +19,12 @@ const { keepAliveRoute } = storeToRefs(useAccessStore());
 }
 
 .v-enter-from {
-  transform: translateX(-10px) scale(0.98);
+  transform: translateX(-30px) scale(1.01);
   opacity: 0;
 }
 
 .v-leave-to {
-  transform: translateX(10px) scale(1.02);
+  transform: translateX(10px) scale(0.99);
   opacity: 0;
 }
 </style>
