@@ -14,12 +14,12 @@
               transition-colors
               rounded-md
               cursor-pointer
-              bg="white hover:gray1"
+              bg="white hover:gray1 dark:(dark3 hover:dark6)"
             >
               <n-avatar round size="large" />
               <div flex="~ col 1" min-w-0>
                 <div flex items-center justify-between>
-                  <p text="lg gray8">打工仔</p>
+                  <p text="lg gray8 dark:gray">打工仔</p>
                   <n-time text-xs :time="Date.now()" format="yyyy-MM-dd" />
                 </div>
                 <p text-gray5 truncate>毫无疑问，你是办公室里最亮的星</p>
