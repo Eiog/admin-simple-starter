@@ -27,7 +27,7 @@ const { layouts, sideCollapsed, layoutsMode } = storeToRefs(useAppStore());
     <template #footer>
       <div wfull hfull bg="white dark:dark8">footer</div>
     </template>
-    <div p3 overflow-hidden bg="gray1 dark:dark8">
+    <div p2 overflow-hidden bg="gray1 dark:dark8">
       <router-entry />
     </div>
   </xsr-layouts>

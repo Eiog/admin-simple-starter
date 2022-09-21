@@ -26,7 +26,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/test/access',
-        name: access_test.name,
+        name: Symbol(access_test.name),
         component: access_test,
         meta: {
           title: '权限测试',
@@ -43,7 +43,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/test/form',
-        name: form_test.name,
+        name: Symbol(form_test.name),
         component: form_test,
         meta: {
           title: '表格测试',

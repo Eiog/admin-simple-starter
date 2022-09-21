@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/access-test/super-is-show',
-        name: super_page.name,
+        name: Symbol(super_page.name),
         component: super_page,
         meta: {
           title: '超级权限才能看见我',
