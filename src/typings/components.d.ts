@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     DefaultTabs: typeof import('./../layouts/DefaultTabs.vue')['default']
     HeaderController: typeof import('./../layouts/components/HeaderController.vue')['default']
     LanguageToggle: typeof import('./../layouts/components/LanguageToggle.vue')['default']
+    Layouts: typeof import('./../layouts/Layouts.vue')['default']
     MessageDroupdown: typeof import('./../layouts/components/MessageDroupdown.vue')['default']
     MessageDroupdownPanel: typeof import('./../layouts/components/MessageDroupdownPanel.vue')['default']
     NaiveProvider: typeof import('./../layouts/NaiveProvider.vue')['default']

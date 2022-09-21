@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import XsrLayouts from 'xsr-layouts';
 const { layouts, sideCollapsed, layoutsMode } = storeToRefs(useAppStore());
 </script>
 <template>
-  <xsr-layouts
+  <layouts
     :mode="layoutsMode"
     :collapsed="sideCollapsed"
     :header="layouts.header"
     :sider="layouts.sider"
     :footer="layouts.footer"
-    :main="{ padding: '10px' }"
+    :main="{ contentStyle: { padding: '10px' } }"
   >
     <template #header>
       <div wfull hfull flex="~ col" border="b" bg="white dark:dark8">
@@ -30,6 +29,6 @@ const { layouts, sideCollapsed, layoutsMode } = storeToRefs(useAppStore());
     <div p2 overflow-hidden bg="gray1 dark:dark8">
       <router-entry />
     </div>
-  </xsr-layouts>
+  </layouts>
 </template>
 <style scoped lang="less"></style>

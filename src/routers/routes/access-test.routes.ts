@@ -4,7 +4,6 @@ import DefaultLayout from '~/layouts/DefaultLayout.vue';
 const super_page = () => import('~/views/access-test/super-is-show.vue');
 import RiSwordFill from '~icons/ri/sword-fill';
 import RiAdminFill from '~icons/ri/admin-fill';
-import RiFolderSettingsFill from '~icons/ri/folder-settings-fill';
 const routes: RouteRecordRaw[] = [
   {
     path: '/access-test',
