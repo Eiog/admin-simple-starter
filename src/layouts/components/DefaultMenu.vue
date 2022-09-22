@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { sideCollapsed, layouts, darkMode } = storeToRefs(useAppStore());
+const { sideCollapsed, layoutOption, darkMode } = storeToRefs(useAppStore());
 const { authMenu } = storeToRefs(useAccessStore());
 const route = useRoute();
 const path = ref(route.path);
@@ -17,7 +17,7 @@ watch(
 <template>
   <n-menu
     :collapsed="sideCollapsed"
-    :collapsed-width="layouts.sider.collapsedWidth"
+    :collapsed-width="layoutOption.sider.collapsedWidth"
     :collapsed-icon-size="26"
     :inverted="darkMode"
     mode="vertical"

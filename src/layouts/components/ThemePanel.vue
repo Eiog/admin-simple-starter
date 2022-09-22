@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const {
-  layoutsMode,
+  layoutMode,
   themePanelShow,
-  layouts,
+  layoutOption,
   themeColor,
   darkMode,
   useOsDark,
 } = storeToRefs(useAppStore());
-const { sider, header, footer } = toRefs(layouts.value);
+const { sider, header, footer } = toRefs(layoutOption.value);
 const colorList = [
   { name: '朱砂', color: '#ff461f' },
   { name: '火红', color: '#ff2d51' },
@@ -48,8 +48,8 @@ const handleMoreClick = () => {
             transition-colors
             cursor-pointer
             bg="hover:gray2"
-            @click="layoutsMode = 'vertical'"
-            :class="layoutsMode === 'vertical' ? 'bg-gray3' : ''"
+            @click="layoutMode = 'vertical'"
+            :class="layoutMode === 'vertical' ? 'bg-gray3' : ''"
           >
             <i text="5xl gray6" i-ri-layout-3-fill></i>
           </div>
@@ -61,8 +61,8 @@ const handleMoreClick = () => {
             transition-colors
             cursor-pointer
             bg="hover:gray2"
-            @click="layoutsMode = 'horizontal'"
-            :class="layoutsMode === 'horizontal' ? 'bg-gray3' : ''"
+            @click="layoutMode = 'horizontal'"
+            :class="layoutMode === 'horizontal' ? 'bg-gray3' : ''"
           >
             <i text="5xl gray6" i-ri-layout-left-fill></i>
           </div>

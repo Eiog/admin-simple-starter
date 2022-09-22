@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import autoAnimatefrom from '@formkit/auto-animate';
-const { layouts, sideCollapsed } = storeToRefs(useAppStore());
+const { layoutOption, sideCollapsed } = storeToRefs(useAppStore());
 const domRef = ref();
 onMounted(() => {
   autoAnimatefrom(domRef.value);
@@ -12,7 +12,7 @@ onMounted(() => {
     wfull
     cursor-default
     ref="domRef"
-    :style="{ height: `${layouts.header.height}px` }"
+    :style="{ height: `${layoutOption.header.height}px` }"
   >
     <h1 v-if="!sideCollapsed" text-2xl>XsRoleAdmin</h1>
     <h1 v-if="sideCollapsed" text-2xl>XsR</h1>

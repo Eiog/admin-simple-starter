@@ -15,9 +15,9 @@ export const useAppStore = defineStore(
     const { locale } = useI18n();
     const language = ref<'zh_cn' | 'en_us'>('zh_cn');
     watch(language, (language) => (locale.value = language));
-    const layoutsMode = ref<'vertical' | 'horizontal'>('horizontal');
+    const layoutMode = ref<'vertical' | 'horizontal'>('horizontal');
     const sideCollapsed = ref(false);
-    const layouts = ref({
+    const layoutOption = ref({
       sider: {
         show: true,
         width: 200,
@@ -79,9 +79,9 @@ export const useAppStore = defineStore(
       useOsDark,
       useDarkMode,
       themePanelShow,
-      layoutsMode,
+      layoutMode,
       sideCollapsed,
-      layouts,
+      layoutOption,
       themeColor,
       naiveThemeMode,
       naiveThemeOverrides,
@@ -90,7 +90,7 @@ export const useAppStore = defineStore(
   {
     persist: {
       key: '__app__',
-      paths: ['language', 'layoutsMode', 'layouts', 'themeColor'],
+      paths: ['language', 'layoutMode', 'layoutOption', 'themeColor'],
     },
   },
 );

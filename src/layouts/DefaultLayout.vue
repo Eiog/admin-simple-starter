@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { layouts, sideCollapsed, layoutsMode } = storeToRefs(useAppStore());
+const { layoutOption, sideCollapsed, layoutMode } = storeToRefs(useAppStore());
 </script>
 <template>
   <layouts
-    :mode="layoutsMode"
+    :mode="layoutMode"
     :collapsed="sideCollapsed"
-    :header="layouts.header"
-    :sider="layouts.sider"
-    :footer="layouts.footer"
+    :header="layoutOption.header"
+    :sider="layoutOption.sider"
+    :footer="layoutOption.footer"
     :main="{ contentStyle: { padding: '10px' } }"
   >
     <template #header>
