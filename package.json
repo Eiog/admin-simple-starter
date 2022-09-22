@@ -2,6 +2,7 @@
   "name": "antrioe-vue3-template",
   "private": true,
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
