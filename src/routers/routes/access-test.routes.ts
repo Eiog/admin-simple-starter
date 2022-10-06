@@ -1,7 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
-const super_page = () => import('~/views/access-test/super-is-show.vue');
 import RiSwordFill from '~icons/ri/sword-fill';
 import RiAdminFill from '~icons/ri/admin-fill';
 const routes: RouteRecordRaw[] = [
@@ -24,8 +23,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/access-test/super-is-show',
-        name: Symbol(super_page.name),
-        component: super_page,
+        name: 'super-is-show',
+        component: () => import('~/views/access-test/super-is-show.vue'),
         meta: {
           title: '超级权限才能看见我',
           description: '超级权限才能看见我',

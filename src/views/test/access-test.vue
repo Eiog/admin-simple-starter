@@ -1,4 +1,4 @@
-<script setup lang="ts" name="access-test">
+<script setup lang="ts">
 const { access } = storeToRefs(useAccessStore());
 const options = [
   {

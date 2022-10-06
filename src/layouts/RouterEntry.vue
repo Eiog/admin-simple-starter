@@ -6,7 +6,7 @@ const { keepAliveRoute } = storeToRefs(useAccessStore());
     <template v-if="Component">
       <transition mode="out-in">
         <keep-alive :include="keepAliveRoute">
-          <component :is="Component"></component>
+          <component :is="Component" :key="Component.scopeId"></component>
         </keep-alive>
       </transition>
     </template>

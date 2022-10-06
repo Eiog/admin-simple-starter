@@ -1,8 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
-const access_test = () => import('~/views/test/access-test.vue');
-const form_test = () => import('~/views/test/form-test.vue');
 import RiSwordFill from '~icons/ri/sword-fill';
 import RiAdminFill from '~icons/ri/admin-fill';
 import RiFolderSettingsFill from '~icons/ri/folder-settings-fill';
@@ -26,8 +24,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/test/access',
-        name: Symbol(access_test.name),
-        component: access_test,
+        name: 'access-test',
+        component: () => import('~/views/test/access-test.vue'),
         meta: {
           title: '权限测试',
           description: '/test/access',
@@ -43,8 +41,8 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/test/form',
-        name: Symbol(form_test.name),
-        component: form_test,
+        name: 'form-test',
+        component: () => import('~/views/test/form-test.vue'),
         meta: {
           title: '表格测试',
           description: '/test/form',

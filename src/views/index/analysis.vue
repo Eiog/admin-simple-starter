@@ -1,4 +1,4 @@
-<script setup lang="ts" name="analysis">
+<script setup lang="ts">
 const { t } = useI18n();
 </script>
 <template>
