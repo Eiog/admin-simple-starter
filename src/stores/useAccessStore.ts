@@ -28,8 +28,11 @@ export const useAccessStore = defineStore(
     const token = ref<string | undefined>();
     const refreshed = ref(true);
     const currentTabPath = ref();
-    const currentTabIndex = computed(() =>
+    const authTabIndex = computed(() =>
       authTabs.value.findIndex((item) => item.path === currentTabPath.value),
+    );
+    const realTabIndex = computed(() =>
+      tabs.value.findIndex((item) => item.path === currentTabPath.value),
     );
     const tabs = ref<Tab[]>([]);
     const authTabs = computed(() => {
@@ -55,7 +58,8 @@ export const useAccessStore = defineStore(
       token,
       refreshed,
       tabs,
-      currentTabIndex,
+      authTabIndex,
+      realTabIndex,
       currentTabPath,
       setTab,
       authTabs,

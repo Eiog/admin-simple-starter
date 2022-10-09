@@ -1,12 +1,24 @@
 <script setup lang="ts">
-const { authTabs, currentTabIndex } = storeToRefs(useAccessStore());
+const { tabs, authTabs, currentTabPath, authTabIndex } = storeToRefs(
+  useAccessStore(),
+);
 const router = useRouter();
 const handleClick = (path?: string) => {
   if (!path) return;
   router.push(path);
 };
-const handleClose = (index: number) => {
-  console.log(index);
+const handleClose = (path: string) => {
+  if (authTabs.value.length <= 1) return;
+  const removeIndex = tabs.value.findIndex((item) => item.path === path);
+  if (currentTabPath.value === path) {
+    const newIndex =
+      authTabIndex.value === 0
+        ? authTabs.value.length - 1
+        : authTabIndex.value - 1;
+    const nextPath = authTabs.value[newIndex].path;
+    router.push(nextPath);
+  }
+  tabs.value.splice(removeIndex, 1);
 };
 </script>
 <template>
@@ -17,10 +29,10 @@ const handleClose = (index: number) => {
         :key="index"
         :bordered="false"
         closable
-        :type="index === currentTabIndex ? 'success' : 'default'"
+        :type="index === authTabIndex ? 'success' : 'default'"
         cursor="pointer!"
         @click="handleClick(item.path)"
-        @close="handleClose(index)"
+        @close="handleClose(item.path)"
       >
         <span flex-center gap1 px3>
           <component :is="item.icon"></component>
