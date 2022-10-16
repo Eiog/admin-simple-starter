@@ -1,15 +1,19 @@
 <script setup lang="ts">
-const { keepAliveRoute } = storeToRefs(useAccessStore());
+const { keepAliveRoute, excludeKeepAlive, routerShow } = storeToRefs(
+  useAccessStore(),
+);
 </script>
 <template>
   <router-view v-slot="{ Component }">
-    <template v-if="Component">
-      <transition mode="out-in">
-        <keep-alive :include="keepAliveRoute">
-          <component :is="Component" :key="Component.scopeId"></component>
-        </keep-alive>
-      </transition>
-    </template>
+    <transition mode="out-in">
+      <keep-alive :include="keepAliveRoute" :exclude="excludeKeepAlive">
+        <component
+          v-if="routerShow"
+          :is="Component"
+          :key="Component.scopeId"
+        ></component>
+      </keep-alive>
+    </transition>
   </router-view>
 </template>
 <style scoped lang="less">

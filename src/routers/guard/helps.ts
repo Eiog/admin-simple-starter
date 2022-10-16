@@ -26,9 +26,11 @@ export const useTab = (to: RouteLocationNormalized) => {
   const { setTab } = useAccessStore();
   setTab({
     title: to.meta.title,
+    name: to.name as string,
     path: to.path,
     access: to.meta.access,
     icon: to.meta.icon,
+    keepAlive: to.meta.keepAlive,
   });
 };
 export const useAuth = (

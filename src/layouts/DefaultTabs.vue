@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { DropdownOption } from 'naive-ui';
 const { tabs, authTabs, currentTabPath, authTabIndex } = storeToRefs(
   useAccessStore(),
 );
+const { refresh } = useAccessStore();
 const router = useRouter();
 const handleClick = (path?: string) => {
   if (!path) return;
@@ -20,6 +22,29 @@ const handleClose = (path: string) => {
   }
   tabs.value.splice(removeIndex, 1);
 };
+const options: DropdownOption[] = [
+  {
+    label: '关闭其他',
+    key: 'closeOther',
+    props: {
+      onClick: () => {
+        if (authTabs.value.length <= 1) return;
+        let current = authTabs.value[authTabIndex.value];
+        tabs.value = [current];
+      },
+    },
+  },
+  {
+    label: '关闭全部',
+    key: 'closeAll',
+    props: {
+      onClick: () => {
+        tabs.value = [];
+        router.push('/');
+      },
+    },
+  },
+];
 </script>
 <template>
   <div wfull h-40px flex items-center gap2 px3>
@@ -40,6 +65,14 @@ const handleClose = (path: string) => {
         </span>
       </n-tag>
     </b-scroll>
+    <n-button quaternary circle @click="refresh">
+      <i i-ri-refresh-line></i>
+    </n-button>
+    <n-dropdown trigger="hover" :options="options">
+      <n-button quaternary circle>
+        <i i-ri-menu-5-fill></i>
+      </n-button>
+    </n-dropdown>
   </div>
 </template>
 <style scoped lang="less"></style>

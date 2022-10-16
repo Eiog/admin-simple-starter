@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia';
 import routes from '~/routers/routes';
-import { verifyAuth, routes2Menu, keepAliveName } from './helps';
+import { verifyAuth, routes2Menu } from './helps';
 import { Component } from 'vue';
 type Tab = {
   title: string;
   path: string;
+  name?: string;
   access: number;
   icon?: Component;
+  keepAlive?: boolean;
 };
 export const useAccessStore = defineStore(
   'accessStore',
@@ -14,7 +16,12 @@ export const useAccessStore = defineStore(
     const baseRoutes = ref(routes);
     const authRoutes = computed(() => verifyAuth(routes, access.value));
     const authMenu = computed(() => routes2Menu(authRoutes.value));
-    const keepAliveRoute = computed(() => keepAliveName(baseRoutes.value));
+    const keepAliveRoute = computed(
+      () =>
+        tabs.value
+          .filter((item) => item.keepAlive)
+          .map((item) => item.name) as string[],
+    );
     const userInfo = ref<Access.User | undefined>({
       id: '10000',
       account: 'aman',
@@ -26,8 +33,8 @@ export const useAccessStore = defineStore(
     });
     const access = ref(0b1111);
     const token = ref<string | undefined>();
-    const refreshed = ref(true);
-    const currentTabPath = ref();
+    const refreshed = ref(false);
+    const currentTabPath = ref<string>('/');
     const authTabIndex = computed(() =>
       authTabs.value.findIndex((item) => item.path === currentTabPath.value),
     );
@@ -47,7 +54,16 @@ export const useAccessStore = defineStore(
       if (tabs.value?.some((item) => item.path === route.path)) return;
       tabs.value?.push(route);
     };
-
+    const routerShow = ref(true);
+    const excludeKeepAlive = ref<string | undefined>(undefined);
+    const refresh = () => {
+      excludeKeepAlive.value = authTabs.value[authTabIndex.value].name;
+      routerShow.value = false;
+      nextTick(() => {
+        routerShow.value = true;
+        excludeKeepAlive.value = undefined;
+      });
+    };
     return {
       baseRoutes,
       authRoutes,
@@ -63,6 +79,9 @@ export const useAccessStore = defineStore(
       currentTabPath,
       setTab,
       authTabs,
+      routerShow,
+      excludeKeepAlive,
+      refresh,
     };
   },
   {

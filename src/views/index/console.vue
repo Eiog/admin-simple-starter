@@ -1,6 +1,4 @@
-<script setup lang="ts">
-const data = ref(0);
-</script>
+<script setup lang="ts"></script>
 <template>
   <div wfull h200 flex-center rounded-xl bg="white dark:dark">
     <h1 text-3xl>Console</h1>
