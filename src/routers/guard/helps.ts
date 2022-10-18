@@ -38,8 +38,26 @@ export const useAuth = (
   from: RouteLocationNormalized,
   next: NavigationGuardNext,
 ) => {
-  const { access, refreshed } = storeToRefs(useAccessStore());
-  if (!refreshed.value && to.meta.requiresAuth)
+  const { access, refreshed , token, userInfo } = storeToRefs(useAccessStore());
+  if (!refreshed.value && token.value && to.meta.requiresAuth) {
+    loginApi
+      .status({ token: token.value })
+      .then((res) => {
+        userInfo.value = res.userInfo;
+        access.value = res.userInfo.access;
+        (refreshed.value = true), (token.value = res.token);
+        next();
+      })
+      .catch(() => {
+        refreshed.value = false;
+        token.value = undefined;
+        userInfo.value = undefined;
+        access.value = 0b0000;
+        next(`/login?redirect=${to.path}`);
+      });
+    return;
+  }
+  if (!refreshed.value && !token.value && to.meta.requiresAuth)
     return next(`/login?redirect=${to.path}`);
 
   if (refreshed.value && to.path === '/login') return next(from.path);

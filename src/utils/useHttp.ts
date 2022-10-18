@@ -77,8 +77,9 @@ export const get: <RES = any, REQ = object>(
   path: string,
   data?: REQ,
 ) => Promise<AxiosResponse<RES, REQ>['data']> = (path, data) => {
+  const { token } = useAccessStore();
   return axiosInstance.get(path, {
-    params: data,
+    params: { ...data, token, timestamp: Date.now() },
   });
 };
 
@@ -86,7 +87,8 @@ export const post: <RES = any, REQ = object>(
   path: string,
   data?: REQ,
 ) => Promise<AxiosResponse<RES, REQ>['data']> = (path, data) => {
-  return axiosInstance.post(path, data);
+  const { token } = useAccessStore();
+  return axiosInstance.post(path, { ...data, token, timestamp: Date.now() });
 };
 export const http = {
   get,

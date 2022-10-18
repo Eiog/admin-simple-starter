@@ -8,6 +8,7 @@ specifiers:
   '@iconify-json/twemoji': ^1.1.5
   '@intlify/vite-plugin-vue-i18n': ^6.0.3
   '@types/crypto-js': ^4.1.1
+  '@types/md5': ^2.3.2
   '@types/node': 18.8.0
   '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.40.0
@@ -32,6 +33,7 @@ specifiers:
   jsdom: ^20.0.1
   less: ^4.1.3
   lodash-es: ^4.17.21
+  md5: ^2.3.0
   naive-ui: ^2.33.5
   nprogress: ^0.2.0
   pinia: ^2.0.23
@@ -63,6 +65,7 @@ dependencies:
   colord: 2.9.3
   echarts: 5.4.0
   lodash-es: 4.17.21
+  md5: 2.3.0
   nprogress: 0.2.0
   pinia: 2.0.23_l7r24p6nevbtlimqmqcwa3ouhu
   pinia-plugin-persistedstate: 2.3.0_pinia@2.0.23
@@ -76,6 +79,7 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.5
   '@intlify/vite-plugin-vue-i18n': 6.0.3_vite@3.1.8+vue-i18n@9.2.2
   '@types/crypto-js': 4.1.1
+  '@types/md5': 2.3.2
   '@types/node': 18.8.0
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
@@ -472,6 +476,10 @@ packages:
 
   /@types/lodash/4.14.186:
     resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
+    dev: true
+
+  /@types/md5/2.3.2:
+    resolution: {integrity: sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og==}
     dev: true
 
   /@types/node/17.0.45:
@@ -1197,6 +1205,10 @@ packages:
       supports-color: 7.2.0
     dev: true
 
+  /charenc/0.0.2:
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
+    dev: false
+
   /check-error/1.0.2:
     resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
     dev: true
@@ -1293,6 +1305,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypt/0.0.2:
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
+    dev: false
 
   /crypto-js/4.1.1:
     resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
@@ -2403,6 +2419,10 @@ packages:
       binary-extensions: 2.2.0
     dev: true
 
+  /is-buffer/1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
+    dev: false
+
   /is-core-module/2.10.0:
     resolution: {integrity: sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg==}
     dependencies:
@@ -2651,6 +2671,14 @@ packages:
       semver: 5.7.1
     dev: true
     optional: true
+
+  /md5/2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
+    dev: false
 
   /mdn-data/2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}

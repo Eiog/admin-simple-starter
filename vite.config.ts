@@ -56,7 +56,7 @@ export default defineConfig(() => {
             ],
           },
         ],
-        dirs: ['src/hooks', 'src/stores', 'src/utils'],
+        dirs: ['src/hooks', 'src/stores', 'src/utils', 'src/apis'],
         dts: 'src/typings/auto-import.d.ts',
         eslintrc: {
           enabled: true,

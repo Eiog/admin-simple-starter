@@ -70,6 +70,7 @@ declare global {
   const isString: typeof import('../utils/useTypeOf')['isString']
   const isUndefined: typeof import('../utils/useTypeOf')['isUndefined']
   const keepAliveName: typeof import('../stores/helps')['keepAliveName']
+  const loginApi: typeof import('../apis/login.api')['loginApi']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']

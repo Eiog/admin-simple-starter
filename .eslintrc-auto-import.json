@@ -69,6 +69,7 @@
     "isString": true,
     "isUndefined": true,
     "keepAliveName": true,
+    "loginApi": true,
     "makeDestructurable": true,
     "mapActions": true,
     "mapGetters": true,
