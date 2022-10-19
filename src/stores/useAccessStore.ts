@@ -87,7 +87,7 @@ export const useAccessStore = defineStore(
   {
     persist: {
       key: '__access__',
-      paths: [''],
+      paths: ['token'],
     },
   },
 );
