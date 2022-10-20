@@ -2,11 +2,11 @@ import { RouteRecordRaw } from 'vue-router';
 import { MenuOption, NIcon } from 'naive-ui';
 import _ from 'lodash-es';
 import { colord } from 'colord';
-export const verifyAuth = (routes: RouteRecordRaw[], access?: number) => {
+export const verifyAuth = (routes: RouteRecordRaw[], access?: number[]) => {
   const authRoutes: RouteRecordRaw[] = [];
   routes.forEach((route) => {
     const requireAccess = route.meta?.access;
-    if (requireAccess && access && (access & requireAccess) === requireAccess) {
+    if (Array.isArray(requireAccess) && verifyAccess(requireAccess, access)) {
       let authRoute = _.cloneDeep(route);
       if (route.children)
         authRoute.children = verifyAuth(route.children, access);
@@ -23,7 +23,7 @@ export const routes2Menu = (routes: RouteRecordRaw[]) => {
       : 0;
   });
   routes.forEach((route) => {
-    if (route.meta && route.meta.show) {
+    if (route.meta && !route.meta.hidden) {
       if (route.meta?.root) {
         route.children?.forEach((childrenRoute) => {
           authMenu.push({
@@ -82,4 +82,10 @@ export const getSatusColor = (color: string = '#ff461f') => {
     pressed: colord(color).darken(0.1).toHex(),
     suppl: colord(color).lighten(0.1).toHex(),
   };
+};
+
+export const verifyAccess = (requireAccess?: number[], access?: number[]) => {
+  if (!access) return false;
+  if (!requireAccess) return true;
+  return access.some((item) => requireAccess.includes(item));
 };

@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
     component: login_page,
     meta: {
       title: '登录',
-      access: 0b0000,
+      hidden: true,
     },
   },
 ];

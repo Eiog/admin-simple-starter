@@ -76,6 +76,7 @@ const headerStyle = computed(() => {
   };
   if (mode?.value === 'vertical') {
     style.paddingLeft = 0;
+    style.zIndex = 2;
   }
   if (mode?.value === 'horizontal') {
     style.paddingLeft = sider.value.show
@@ -117,6 +118,7 @@ const sideStyle = computed(() => {
         ? `${footer?.value?.height}px`
         : 0
       : 0;
+    style.zIndex = 1;
   }
   if (mode?.value === 'horizontal') {
     style.paddingTop = 0;
@@ -128,6 +130,7 @@ const mainStyle = computed(() => {
   let style: StyleValue = {
     position: 'relative',
     width: '100%',
+    height: '100%',
     zIndex: 0,
     transition: 'all .3s',
   };

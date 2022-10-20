@@ -69,7 +69,7 @@ const handleLogin = async () => {
     userInfo.value = result.userInfo;
     token.value = result.token;
     refreshed.value = true;
-    access.value = result.userInfo.access;
+    access.value = result.access;
     router.push(redirect);
     window.$notification.success({
       title: `欢迎回来${result.userInfo.name}`,

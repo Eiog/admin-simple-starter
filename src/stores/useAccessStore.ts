@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia';
 import routes from '~/routers/routes';
-import { verifyAuth, routes2Menu } from './helps';
+import { verifyAuth, routes2Menu, verifyAccess } from './helps';
 import { Component } from 'vue';
 type Tab = {
-  title: string;
+  title?: string;
   path: string;
   name?: string;
-  access: number;
+  access?: number[];
   icon?: Component;
   keepAlive?: boolean;
 };
@@ -31,7 +31,7 @@ export const useAccessStore = defineStore(
       avatar:
         'http://aman-blog-oss.oss-cn-beijing.aliyuncs.com/2022-8-5/20190927103132_ZPTkU-2a8f20438489e4068a057f5e0f5458c0.jpeg',
     });
-    const access = ref(0b1111);
+    const access = ref<number[]>([]);
     const token = ref<string | undefined>();
     const refreshed = ref(false);
     const currentTabPath = ref<string>('/');
@@ -45,7 +45,7 @@ export const useAccessStore = defineStore(
     const authTabs = computed(() => {
       const _tabs: Tab[] = [];
       tabs.value.forEach((tab) => {
-        if ((access.value & tab.access) === tab.access) _tabs.push(tab);
+        if (verifyAccess(tab.access, access.value)) _tabs.push(tab);
       });
       return _tabs;
     });

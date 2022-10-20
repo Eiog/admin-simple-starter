@@ -9,6 +9,8 @@ declare namespace Access {
   };
   type StatusResult = {
     userInfo: User;
+    access: number[];
+    role: string;
     token: string;
   };
   type StatusParam = {

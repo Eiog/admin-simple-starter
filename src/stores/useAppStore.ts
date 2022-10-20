@@ -43,7 +43,7 @@ export const useAppStore = defineStore(
         height: 100,
       },
       footer: {
-        show: true,
+        show: false,
         fixed: false,
         height: 80,
       },

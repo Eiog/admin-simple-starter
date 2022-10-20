@@ -8,7 +8,9 @@ const { layoutOption, sideCollapsed, layoutMode } = storeToRefs(useAppStore());
     :header="layoutOption.header"
     :sider="layoutOption.sider"
     :footer="layoutOption.footer"
-    :main="{ contentStyle: { padding: '10px' } }"
+    :main="{
+      contentStyle: { width: '100%', height: '100%' },
+    }"
   >
     <template #header>
       <div wfull hfull flex="~ col" border="b" bg="white dark:dark8">

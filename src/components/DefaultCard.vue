@@ -4,8 +4,8 @@ const props = defineProps<{ title?: string }>();
 <template>
   <div flex flex-col min-w-0 bg="white dark:dark" rounded-xl px5 py1>
     <slot name="header">
-      <div wfull flex items-center>
-        <h1>{{ props.title }}</h1>
+      <div wfull h-12 flex items-center border-b>
+        <h1 text-xl>{{ props.title }}</h1>
       </div>
     </slot>
     <slot></slot>

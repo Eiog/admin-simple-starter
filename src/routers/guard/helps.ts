@@ -1,6 +1,6 @@
 import NProgress from 'nprogress';
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
-
+import { verifyAccess } from '~/stores/helps';
 /**动态修改title */
 export function useChangeTitle(to: RouteLocationNormalized) {
   const title = useTitle();
@@ -22,7 +22,7 @@ export function useNProgress() {
   return { start, done };
 }
 export const useTab = (to: RouteLocationNormalized) => {
-  if (!to.meta.show) return;
+  if (to.meta.hidden) return;
   const { setTab } = useAccessStore();
   setTab({
     title: to.meta.title,
@@ -38,13 +38,13 @@ export const useAuth = (
   from: RouteLocationNormalized,
   next: NavigationGuardNext,
 ) => {
-  const { access, refreshed , token, userInfo } = storeToRefs(useAccessStore());
+  const { access, refreshed, token, userInfo } = storeToRefs(useAccessStore());
   if (!refreshed.value && token.value && to.meta.requiresAuth) {
     loginApi
       .status({ token: token.value })
       .then((res) => {
         userInfo.value = res.userInfo;
-        access.value = res.userInfo.access;
+        access.value = res.access;
         (refreshed.value = true), (token.value = res.token);
         next();
       })
@@ -52,7 +52,7 @@ export const useAuth = (
         refreshed.value = false;
         token.value = undefined;
         userInfo.value = undefined;
-        access.value = 0b0000;
+        access.value = [];
         next(`/login?redirect=${to.path}`);
       });
     return;
@@ -65,12 +65,10 @@ export const useAuth = (
     if (
       access.value &&
       to.meta.access &&
-      verifyAuth(access.value, to.meta.access)
+      verifyAccess(to.meta.access, access.value)
     )
       return next();
     return next('/no-access');
   }
   if (!to.meta.requiresAuth) return next();
 };
-const verifyAuth = (access: number, requireAccess: number) =>
-  (access & requireAccess) === requireAccess;
