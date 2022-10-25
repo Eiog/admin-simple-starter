@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n();
+onDeactivated(() => {
+  onActivated(() => {});
+});
 </script>
 <template>
   <default-card h-209 title="分析页">
