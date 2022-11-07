@@ -116,6 +116,7 @@ declare global {
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const removeLocal: typeof import('../utils/useStorage')['removeLocal']
   const resolveComponent: typeof import('vue')['resolveComponent']
+  const resolveDirective: typeof import('vue')['resolveDirective']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const routes2Menu: typeof import('../stores/helps')['routes2Menu']

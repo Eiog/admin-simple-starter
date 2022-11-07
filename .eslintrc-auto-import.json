@@ -115,6 +115,7 @@
     "refWithControl": true,
     "removeLocal": true,
     "resolveComponent": true,
+    "resolveDirective": true,
     "resolveRef": true,
     "resolveUnref": true,
     "routes2Menu": true,

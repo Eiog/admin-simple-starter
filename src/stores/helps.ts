@@ -85,7 +85,7 @@ export const getSatusColor = (color: string = '#ff461f') => {
 };
 
 export const verifyAccess = (requireAccess?: number[], access?: number[]) => {
-  if (!access) return false;
+  if (!access || !Array.isArray(access)) return false;
   if (!requireAccess) return true;
   return access.some((item) => requireAccess.includes(item));
 };
