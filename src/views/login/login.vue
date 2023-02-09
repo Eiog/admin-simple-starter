@@ -104,7 +104,7 @@ const handleVerify = () => {
           登录
         </h1>
         <p text-gray>
-          靓芙泉门店管理系统
+          管理系统
         </p>
       </div>
       <n-form ref="formRef" :model="formValue" :rules="rules">
