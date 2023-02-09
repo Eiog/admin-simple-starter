@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale } =
-  storeToRefs(useAppStore());
+const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale }
+  = storeToRefs(useAppStore())
 </script>
+
 <template>
   <naive-provider
     :dark="darkMode"
@@ -11,7 +12,7 @@ const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale } =
   >
     <router-view v-slot="{ Component }">
       <transition mode="out-in">
-        <component :is="Component"></component>
+        <component :is="Component" />
       </transition>
     </router-view>
   </naive-provider>

@@ -1,9 +1,9 @@
 {
-  "welcome":"欢迎使用unlit模板",
-  "hello":"你好！ 世界！",
-  "menu":{
-    "home":"首页",
-    "analysis":"分析页",
-    "console":"控制台"
+  "welcome": "欢迎使用unlit模板",
+  "hello": "你好！ 世界！",
+  "menu": {
+    "home": "首页",
+    "analysis": "分析页",
+    "console": "控制台"
   }
-  }
+}

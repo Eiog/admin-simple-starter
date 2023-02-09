@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { DropdownOption, NAvatar } from 'naive-ui';
-const { userInfo, refreshed, token } = storeToRefs(useAccessStore());
-const router = useRouter();
+import type { DropdownOption } from 'naive-ui'
+import { NAvatar } from 'naive-ui'
+const { userInfo, refreshed, token } = storeToRefs(useAccessStore())
+const router = useRouter()
 const handleLogOut = () => {
-  token.value = undefined;
-  refreshed.value = false;
-  router.push('/login');
-};
+  token.value = undefined
+  refreshed.value = false
+  router.push('/login')
+}
 const options: DropdownOption[] = [
   {
     key: 'header',
@@ -28,7 +29,7 @@ const options: DropdownOption[] = [
             { default: () => userInfo.value?.name },
           ),
         ]),
-      ]);
+      ])
     },
   },
   {
@@ -39,7 +40,7 @@ const options: DropdownOption[] = [
     key: 'setting',
     label: '个人设置',
     icon: () => {
-      return h('i', { class: 'i-ri-user-settings-fill' }, {});
+      return h('i', { class: 'i-ri-user-settings-fill' }, {})
     },
   },
   {
@@ -53,12 +54,13 @@ const options: DropdownOption[] = [
       onClick: handleLogOut,
     },
     icon: () => {
-      return h('i', { class: 'i-ri-logout-circle-fill' }, {});
+      return h('i', { class: 'i-ri-logout-circle-fill' }, {})
     },
   },
-];
-const handleSelect = () => {};
+]
+const handleSelect = () => {}
 </script>
+
 <template>
   <n-dropdown
     trigger="hover"
@@ -66,7 +68,8 @@ const handleSelect = () => {};
     :options="options"
     @select="handleSelect"
   >
-    <n-avatar ml3 mr3 cursor-pointer round :src="userInfo?.avatar"></n-avatar>
+    <NAvatar ml3 mr3 cursor-pointer round :src="userInfo?.avatar" />
   </n-dropdown>
 </template>
+
 <style scoped lang="less"></style>

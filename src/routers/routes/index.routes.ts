@@ -1,10 +1,10 @@
-import { RouteRecordRaw } from 'vue-router';
-import { markRaw } from 'vue';
-import DefaultLayout from '~/layouts/DefaultLayout.vue';
-import analysis from '~/views/index/analysis.vue';
-import RiCpuFill from '~icons/ri/cpu-fill';
-import RiBubbleChartFill from '~icons/ri/bubble-chart-fill';
-import RiAppsFill from '~icons/ri/apps-fill';
+import type { RouteRecordRaw } from 'vue-router'
+import { markRaw } from 'vue'
+import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import analysis from '~/views/index/analysis.vue'
+import RiCpuFill from '~icons/ri/cpu-fill'
+import RiBubbleChartFill from '~icons/ri/bubble-chart-fill'
+import RiAppsFill from '~icons/ri/apps-fill'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -47,6 +47,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-];
+]
 
-export default routes;
+export default routes

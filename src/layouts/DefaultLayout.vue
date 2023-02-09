@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { layoutOption, sideCollapsed, layoutMode } = storeToRefs(useAppStore());
+const { layoutOption, sideCollapsed, layoutMode } = storeToRefs(useAppStore())
 </script>
+
 <template>
   <layouts
     :mode="layoutMode"
@@ -22,15 +23,18 @@ const { layoutOption, sideCollapsed, layoutMode } = storeToRefs(useAppStore());
       <toggle-collapsed />
       <div wfull hfull bg="white dark:dark5" shadow-xl>
         <default-brand />
-        <default-menu></default-menu>
+        <default-menu />
       </div>
     </template>
     <template #footer>
-      <div wfull hfull bg="white dark:dark8">footer</div>
+      <div wfull hfull bg="white dark:dark8">
+        footer
+      </div>
     </template>
     <div p2 overflow-hidden bg="gray1 dark:dark8">
       <router-entry />
     </div>
   </layouts>
 </template>
+
 <style scoped lang="less"></style>

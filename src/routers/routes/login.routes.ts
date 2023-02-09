@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from 'vue-router';
-import login_page from '~/views/login/login.vue';
+import type { RouteRecordRaw } from 'vue-router'
+import login_page from '~/views/login/login.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/login',
@@ -9,6 +9,6 @@ const routes: RouteRecordRaw[] = [
       hidden: true,
     },
   },
-];
+]
 
-export default routes;
+export default routes

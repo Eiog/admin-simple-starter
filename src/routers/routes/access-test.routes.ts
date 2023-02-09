@@ -1,8 +1,8 @@
-import { RouteRecordRaw } from 'vue-router';
-import { markRaw } from 'vue';
-import DefaultLayout from '~/layouts/DefaultLayout.vue';
-import RiSwordFill from '~icons/ri/sword-fill';
-import RiAdminFill from '~icons/ri/admin-fill';
+import type { RouteRecordRaw } from 'vue-router'
+import { markRaw } from 'vue'
+import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import RiSwordFill from '~icons/ri/sword-fill'
+import RiAdminFill from '~icons/ri/admin-fill'
 const routes: RouteRecordRaw[] = [
   {
     path: '/access-test',
@@ -32,6 +32,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-];
+]
 
-export default routes;
+export default routes

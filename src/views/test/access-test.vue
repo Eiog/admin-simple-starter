@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { access } = storeToRefs(useAccessStore());
+const { access } = storeToRefs(useAccessStore())
 const options = [
   {
     label: 'Create',
@@ -17,8 +17,9 @@ const options = [
     label: 'Delete',
     value: 3,
   },
-];
+]
 </script>
+
 <template>
   <div wfull h200 flex-center rounded-xl bg="white dark:dark">
     <n-card title="权限测试" rounded="!xl" w="!120" shadow="!md">
@@ -26,4 +27,5 @@ const options = [
     </n-card>
   </div>
 </template>
+
 <style scoped lang="less"></style>

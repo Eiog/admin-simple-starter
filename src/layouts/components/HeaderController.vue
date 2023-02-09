@@ -1,4 +1,5 @@
 <script setup lang="ts"></script>
+
 <template>
   <div ml-auto flex-center gap3 mr6>
     <user-droupdown />
@@ -17,11 +18,12 @@
             target="_blank"
             rel="noopener noreferrer"
             text-xl
-          ></a>
+          />
         </n-button>
       </template>
       Github
     </n-tooltip>
   </div>
 </template>
+
 <style scoped lang="less"></style>

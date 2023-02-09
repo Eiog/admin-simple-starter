@@ -1,9 +1,9 @@
-import { RouteRecordRaw } from 'vue-router';
-import { markRaw } from 'vue';
-import DefaultLayout from '~/layouts/DefaultLayout.vue';
-import RiSwordFill from '~icons/ri/sword-fill';
-import RiAdminFill from '~icons/ri/admin-fill';
-import RiFolderSettingsFill from '~icons/ri/folder-settings-fill';
+import type { RouteRecordRaw } from 'vue-router'
+import { markRaw } from 'vue'
+import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import RiSwordFill from '~icons/ri/sword-fill'
+import RiAdminFill from '~icons/ri/admin-fill'
+import RiFolderSettingsFill from '~icons/ri/folder-settings-fill'
 const routes: RouteRecordRaw[] = [
   {
     path: '/test',
@@ -46,6 +46,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-];
+]
 
-export default routes;
+export default routes

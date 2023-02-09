@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { sideCollapsed } = storeToRefs(useAppStore());
+const { sideCollapsed } = storeToRefs(useAppStore())
 </script>
+
 <template>
   <div
     absolute
@@ -24,7 +25,8 @@ const { sideCollapsed } = storeToRefs(useAppStore());
       transition-transform
       duration-500
       :class="sideCollapsed ? 'rotate-0' : 'rotate-180'"
-    ></i>
+    />
   </div>
 </template>
+
 <style scoped lang="less"></style>

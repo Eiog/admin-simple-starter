@@ -1,19 +1,20 @@
 <script setup lang="ts">
-const { sideCollapsed, layoutOption, darkMode } = storeToRefs(useAppStore());
-const { authMenu } = storeToRefs(useAccessStore());
-const route = useRoute();
-const path = ref(route.path);
-const router = useRouter();
+const { sideCollapsed, layoutOption, darkMode } = storeToRefs(useAppStore())
+const { authMenu } = storeToRefs(useAccessStore())
+const route = useRoute()
+const path = ref(route.path)
+const router = useRouter()
 const handleClick = (key: string) => {
-  router.push(key);
-};
+  router.push(key)
+}
 watch(
   () => route.path,
   (newPath) => {
-    path.value = newPath;
+    path.value = newPath
   },
-);
+)
 </script>
+
 <template>
   <n-menu
     :collapsed="sideCollapsed"
@@ -26,4 +27,5 @@ watch(
     @update:value="handleClick"
   />
 </template>
+
 <style scoped lang="less"></style>

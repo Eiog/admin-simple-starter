@@ -1,21 +1,23 @@
 <script setup lang="ts">
 const { keepAliveRoute, excludeKeepAlive, routerShow } = storeToRefs(
   useAccessStore(),
-);
+)
 </script>
+
 <template>
   <router-view v-slot="{ Component }">
     <transition mode="out-in">
       <keep-alive :include="keepAliveRoute" :exclude="excludeKeepAlive">
         <component
-          v-if="routerShow"
           :is="Component"
+          v-if="routerShow"
           :key="Component.scopeId"
-        ></component>
+        />
       </keep-alive>
     </transition>
   </router-view>
 </template>
+
 <style scoped lang="less">
 .v-leave-active,
 .v-enter-active {

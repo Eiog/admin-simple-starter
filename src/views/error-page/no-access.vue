@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const router = useRouter();
+const router = useRouter()
 </script>
+
 <template>
   <div wfull hfull flex-center>
     <n-result
@@ -10,9 +11,12 @@ const router = useRouter();
       size="huge"
     >
       <template #footer>
-        <n-button @click="router.push('/')">找点乐子吧"/"</n-button>
+        <n-button @click="router.push('/')">
+          找点乐子吧"/"
+        </n-button>
       </template>
     </n-result>
   </div>
 </template>
+
 <style scoped lang="less"></style>

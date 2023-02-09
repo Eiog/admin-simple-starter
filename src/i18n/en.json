@@ -1,9 +1,9 @@
 {
-  "welcome":"welcome to unlit template",
-  "hello":"hello! World!",
-  "menu":{
-    "home":"Hmoe",
-    "analysis":"Analysis",
-    "console":"Console"
+  "welcome": "welcome to unlit template",
+  "hello": "hello! World!",
+  "menu": {
+    "home": "Hmoe",
+    "analysis": "Analysis",
+    "console": "Console"
   }
-  }
+}
