@@ -11,5 +11,5 @@ node_modules
 dist
 dist-ssr
 *.local
-.output
-.nuxt
+src/typings/auto-import.d.ts
+src/typings/components.d.ts
