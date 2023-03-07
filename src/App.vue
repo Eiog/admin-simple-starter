@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale }
-  = storeToRefs(useAppStore())
 useHead({
   title: 'vue3 starter',
   meta: [
@@ -21,18 +19,7 @@ useHead({
 </script>
 
 <template>
-  <naive-provider
-    :dark="darkMode"
-    :theme-overrides="naiveThemeOverrides"
-    :locale="naiveLocale"
-    :date-locale="naiveDateLocale"
-  >
-    <router-view v-slot="{ Component }">
-      <transition mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </naive-provider>
+  <RouterView />
 </template>
 
 <style>

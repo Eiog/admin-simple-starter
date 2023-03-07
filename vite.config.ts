@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
@@ -13,6 +13,8 @@ import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import DefineOptions from 'unplugin-vue-define-options/vite'
+import Pages from 'vite-plugin-pages'
+import Layouts from 'vite-plugin-vue-layouts'
 
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -37,6 +39,12 @@ const configManualChunk = (id: string) => {
 export default defineConfig(() => {
   return {
     plugins: [
+      // https://github.com/hannoeru/vite-plugin-pages
+      Pages({
+        extensions: ['vue', 'md'],
+      }),
+      // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+      Layouts(),
       DefineOptions(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],

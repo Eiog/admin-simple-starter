@@ -54,12 +54,12 @@ export const useAuth = (
         token.value = undefined
         userInfo.value = undefined
         access.value = []
-        next(`/login?redirect=${to.path}`)
+        next(`/login/login?redirect=${to.path}`)
       })
     return
   }
   if (!refreshed.value && !token.value && to.meta.requiresAuth)
-    return next(`/login?redirect=${to.path}`)
+    return next(`/login/login?redirect=${to.path}`)
 
   if (refreshed.value && to.path === '/login')
     return next(from.path)
@@ -70,7 +70,7 @@ export const useAuth = (
       && verifyAccess(to.meta.access, access.value)
     )
       return next()
-    return next('/no-access')
+    return next('/error-page/no-access')
   }
   if (!to.meta.requiresAuth)
     return next()

@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Breadcrumb: typeof import('./../layouts/components/Breadcrumb.vue')['default']
     BScroll: typeof import('./../layouts/components/BScroll.vue')['default']
+    Default: typeof import('./../layouts/default.vue')['default']
     DefaultBrand: typeof import('./../layouts/components/DefaultBrand.vue')['default']
     DefaultCard: typeof import('./../components/DefaultCard.vue')['default']
     DefaultHeader: typeof import('./../layouts/DefaultHeader.vue')['default']

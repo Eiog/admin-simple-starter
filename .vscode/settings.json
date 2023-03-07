@@ -1,19 +1,5 @@
 {
-  "cSpell.words": [
-    "Vitesse",
-    "Vite",
-    "unocss",
-    "vitest",
-    "vueuse",
-    "pinia",
-    "demi",
-    "antfu",
-    "iconify",
-    "intlify",
-    "vitejs",
-    "unplugin",
-    "pnpm"
-  ],
+  "cSpell.words": ["Vitesse", "Vite", "unocss", "vitest", "vueuse", "pinia", "demi", "antfu", "iconify", "intlify", "vitejs", "unplugin", "pnpm"],
   "i18n-ally.localesPaths": [
     "src/i18n",
     "src/locales"
