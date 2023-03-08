@@ -9,13 +9,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BasicLayout: typeof import('./../layouts/BasicLayout.vue')['default']
     Breadcrumb: typeof import('./../layouts/components/Breadcrumb.vue')['default']
     BScroll: typeof import('./../layouts/components/BScroll.vue')['default']
     Default: typeof import('./../layouts/default.vue')['default']
     DefaultBrand: typeof import('./../layouts/components/DefaultBrand.vue')['default']
     DefaultCard: typeof import('./../components/DefaultCard.vue')['default']
     DefaultHeader: typeof import('./../layouts/DefaultHeader.vue')['default']
-    DefaultLayout: typeof import('./../layouts/DefaultLayout.vue')['default']
     DefaultMenu: typeof import('./../layouts/components/DefaultMenu.vue')['default']
     DefaultTabs: typeof import('./../layouts/DefaultTabs.vue')['default']
     HeaderController: typeof import('./../layouts/components/HeaderController.vue')['default']
@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     NInput: typeof import('naive-ui')['NInput']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
     NMenu: typeof import('naive-ui')['NMenu']
+    NResult: typeof import('naive-ui')['NResult']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSwitch: typeof import('naive-ui')['NSwitch']
     NTabPane: typeof import('naive-ui')['NTabPane']

@@ -1,12 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { markRaw } from 'vue'
-import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import layout from '~/layouts/default.vue'
 import RiSwordFill from '~icons/ri/sword-fill'
 import RiAdminFill from '~icons/ri/admin-fill'
 const routes: RouteRecordRaw[] = [
   {
     path: '/access-test',
-    component: DefaultLayout,
+    component: layout,
     redirect: '/access-test',
     meta: {
       title: '超级权限可见',

@@ -1,13 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { markRaw } from 'vue'
-import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import layout from '~/layouts/default.vue'
 import RiSwordFill from '~icons/ri/sword-fill'
 import RiAdminFill from '~icons/ri/admin-fill'
 import RiFolderSettingsFill from '~icons/ri/folder-settings-fill'
 const routes: RouteRecordRaw[] = [
   {
     path: '/test',
-    component: DefaultLayout,
+    component: layout,
     redirect: '/test/access',
     meta: {
       title: '业务测试',

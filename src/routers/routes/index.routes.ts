@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { markRaw } from 'vue'
-import DefaultLayout from '~/layouts/DefaultLayout.vue'
+import layout from '~/layouts/default.vue'
 import analysis from '~/views/index/analysis.vue'
 import RiCpuFill from '~icons/ri/cpu-fill'
 import RiBubbleChartFill from '~icons/ri/bubble-chart-fill'
@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/analysis',
-    component: DefaultLayout,
+    component: layout,
     meta: {
       title: '首页',
       description: 'home',

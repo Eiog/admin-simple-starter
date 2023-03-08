@@ -1,6 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
+import indexRoutes from './index.routes'
+import textRoutes from './test.routes'
+import accessRoutes from './access-test.routes'
+import loginRoutes from './login.routes'
 const routes: RouteRecordRaw[] = [
-
+  ...indexRoutes,
+  ...textRoutes,
+  ...accessRoutes,
+  ...loginRoutes,
   {
     path: '/not-found',
     name: 'not-found',

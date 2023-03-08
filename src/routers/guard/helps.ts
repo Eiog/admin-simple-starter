@@ -54,12 +54,12 @@ export const useAuth = (
         token.value = undefined
         userInfo.value = undefined
         access.value = []
-        next(`/login/login?redirect=${to.path}`)
+        next(`/login?redirect=${to.path}`)
       })
     return
   }
   if (!refreshed.value && !token.value && to.meta.requiresAuth)
-    return next(`/login/login?redirect=${to.path}`)
+    return next(`/login?redirect=${to.path}`)
 
   if (refreshed.value && to.path === '/login')
     return next(from.path)
