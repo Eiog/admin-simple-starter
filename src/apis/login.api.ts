@@ -5,7 +5,7 @@ const result = {
     name: '阿满',
     avatar: 'http://aman-blog-oss.oss-cn-beijing.aliyuncs.com/2022-8-5/20190927103132_ZPTkU-2a8f20438489e4068a057f5e0f5458c0.jpeg',
   },
-  access: [1, 2, 3, 4],
+  access: [0, 1, 2, 3],
   token: '0ACdd3EF-E9DA-81d1-4eD8-Ccb6ed6d4f5e',
 }
 const login: (param: Access.LoginParam) => Promise<typeof result> = (param: Access.LoginParam) => {

@@ -39,8 +39,6 @@ export const useAccessStore = defineStore(
       id: '10000',
       account: 'aman',
       name: '阿满',
-      access: 0b1111,
-      role: 'admin',
       avatar:
         'http://aman-blog-oss.oss-cn-beijing.aliyuncs.com/2022-8-5/20190927103132_ZPTkU-2a8f20438489e4068a057f5e0f5458c0.jpeg',
     })
