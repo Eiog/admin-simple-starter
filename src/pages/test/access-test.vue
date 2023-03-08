@@ -20,6 +20,12 @@ const options = [
 ]
 </script>
 
+<route lang="yaml">
+meta:
+  menuGroup: 测试
+  title: 权限测试
+</route>
+
 <template>
   <div wfull h200 flex-center rounded-xl bg="white dark:dark">
     <n-card title="权限测试" rounded="!xl" w="!120" shadow="!md">

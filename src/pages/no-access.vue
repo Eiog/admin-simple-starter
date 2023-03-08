@@ -1,3 +1,10 @@
+<route lang="yaml">
+meta:
+  title: 没有权限
+  hidden: true
+  requiresAuth: false
+</route>
+
 <script setup lang="ts">
 const router = useRouter()
 </script>
@@ -5,9 +12,9 @@ const router = useRouter()
 <template>
   <div wfull hfull flex-center>
     <n-result
-      status="404"
-      title="404 资源不存在"
-      description="生活总归带点荒谬"
+      status="403"
+      title="403 禁止访问"
+      description="总有些门是对你关闭的"
       size="huge"
     >
       <template #footer>

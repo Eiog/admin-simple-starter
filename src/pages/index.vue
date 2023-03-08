@@ -5,12 +5,10 @@
 <route lang="yaml">
 redirect: analysis
 meta:
-  layout: BasicLayout
+  hidden: true
 </route>
 
-<template>
-  <div>index</div>
-</template>
+<template />
 
 <style scoped lang='less'>
 

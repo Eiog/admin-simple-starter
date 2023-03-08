@@ -1,5 +1,11 @@
 <script setup lang="ts"></script>
 
+<route lang="yaml">
+meta:
+  menuGroup: 超级权限可见
+  title: 超级权限可见
+</route>
+
 <template>
   <div wfull h200 flex-center rounded-xl bg="white dark:dark">
     <h1 text-3xl>

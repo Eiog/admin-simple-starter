@@ -64,7 +64,7 @@ const options: DropdownOption[] = [
         @close="handleClose(item.path)"
       >
         <span flex-center gap1 px3>
-          <component :is="item.icon" />
+          <component :is="item.icon" v-if="item.icon" />
           <span>{{ item.title }}</span>
         </span>
       </n-tag>

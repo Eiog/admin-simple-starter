@@ -6,7 +6,7 @@ import { colord } from 'colord'
 export const verifyAccess = (requireAccess?: number[], access?: number[]) => {
   if (!access || !Array.isArray(access))
     return false
-  if (!requireAccess)
+  if (!requireAccess || requireAccess.length === 0)
     return true
   return access.some(item => requireAccess.includes(item))
 }
@@ -37,40 +37,19 @@ export const routes2Menu = (routes: RouteRecordRaw[]) => {
       : 0
   })
   routes.forEach((route) => {
-    if (route.meta && !route.meta.hidden) {
-      if (route.meta?.root) {
-        route.children?.forEach((childrenRoute) => {
-          authMenu.push({
-            label: childrenRoute.meta?.title,
-            key: childrenRoute.path,
-            icon: () => renderIcon(childrenRoute),
-          })
-        })
+    if (route.meta?.hidden)
+      return
+    if (route.meta?.menuGroupKey) {
+      const key = route.meta.menuGroupKey
+      const index = authMenu.findIndex(f => f.key === key)
+      if (index > -1) {
+        authMenu[index].children?.push({ key: route.path, label: route.meta.title })
         return
       }
-      if (!route.meta?.root) {
-        route.children?.forEach((childrenRoute) => {
-          if (childrenRoute.meta?.root) {
-            authMenu.push({
-              label: childrenRoute.meta?.title,
-              key: childrenRoute.path,
-              icon: () => renderIcon(childrenRoute),
-            })
-          }
-        })
-      }
-      if (
-        !route.meta.root
-        && !route.children?.every(item => item.meta?.root)
-      ) {
-        authMenu.push({
-          label: route.meta.title,
-          key: route.path,
-          icon: () => renderIcon(route),
-          children: route.children ? routes2Menu(route.children) : undefined,
-        })
-      }
+      authMenu.push({ key, label: route.meta.menuGroupLabel, type: 'group', children: [{ key: route.path, label: route.meta.title }] })
+      return
     }
+    authMenu.push({ key: route.path, label: route.meta?.title })
   })
   return authMenu
 }

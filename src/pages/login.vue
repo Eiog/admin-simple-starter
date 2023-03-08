@@ -1,3 +1,10 @@
+<route lang="yaml">
+meta:
+  title: 登陆
+  hidden: true
+  requiresAuth: false
+</route>
+
 <script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui'
 import md5 from 'md5'

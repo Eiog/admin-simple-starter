@@ -1,13 +1,15 @@
-import { Component } from 'vue';
-import { _RouteLocationBase } from 'vue-router';
+import type{ Component } from 'vue';
+import 'vue-router';
 declare module 'vue-router' {
   interface RouteMeta {
     title?: string;
     description?: string;
-    icon?: Component;
+    icon?: string;
     requiresAuth?: boolean;
+    menuGroupKey?:string
+    menuGroupLabel?:string
     access?: number[];
-    badge?: string | number;
+    badge?: number;
     hidden?: boolean;
     sort?: number;
     root?: boolean;

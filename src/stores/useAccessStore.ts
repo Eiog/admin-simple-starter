@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { Component } from 'vue'
 import { routes2Menu, verifyAccess, verifyAuth } from './helps'
-import routes from '~/routers/routes'
+import routes from '~pages'
 interface Tab {
   title?: string
   path: string
@@ -14,7 +14,7 @@ export const useAccessStore = defineStore(
   'accessStore',
   () => {
     const tabs = ref<Tab[]>([])
-    const access = ref<number[]>([])
+    const access = ref<number[]>([1, 2, 3, 4])
     const authTabs = computed(() => {
       const _tabs: Tab[] = []
       tabs.value.forEach((tab) => {
@@ -26,7 +26,6 @@ export const useAccessStore = defineStore(
     const token = ref<string | undefined>()
     const refreshed = ref(false)
     const currentTabPath = ref<string>('/')
-    const baseRoutes = ref(routes)
     const authRoutes = computed(() => verifyAuth(routes, access.value))
     const authMenu = computed(() => routes2Menu(authRoutes.value))
     const keepAliveRoute = computed(
@@ -67,7 +66,6 @@ export const useAccessStore = defineStore(
       })
     }
     return {
-      baseRoutes,
       authRoutes,
       authMenu,
       keepAliveRoute,

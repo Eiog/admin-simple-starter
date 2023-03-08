@@ -125,6 +125,12 @@ const handleRemove = (index: number) => {
 }
 </script>
 
+<route lang="yaml">
+meta:
+  menuGroup: 关于
+  title: 关于
+</route>
+
 <template>
   <div wfull>
     <TransitionGroup relative flex="~ wrap" tag="div" name="fade">

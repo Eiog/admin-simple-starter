@@ -42,6 +42,29 @@ export default defineConfig(() => {
       // https://github.com/hannoeru/vite-plugin-pages
       Pages({
         extensions: ['vue', 'md'],
+        exclude: ['**/components/*.vue'],
+        extendRoute: (route, parent) => {
+          const path = route.path as string
+          const groupPath = path.match(/(?<=\/).*?(?=\/)/)
+          const defaultMeta = {
+            title: '',
+            description: '',
+            icon: '',
+            menuGroupKey: groupPath !== null ? groupPath[0] : undefined,
+            menuGroupLabel: groupPath !== null ? groupPath[0] : undefined,
+            requiresAuth: true,
+            access: [],
+            badge: undefined,
+            hidden: false,
+            root: false,
+            keepAlive: true,
+          }
+          return { ...route, meta: Object.assign(defaultMeta, route.meta) }
+        },
+        onRoutesGenerated: (routes) => {
+        },
+        onClientGenerated: (clientCode) => {
+        },
       }),
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
