@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui'
 import md5 from 'md5'
-import ImageVerify from './components/ImageVerify.vue'
 const { token, refreshed, userInfo, access } = storeToRefs(useAccessStore())
 const formValue = ref({
   account: 'admin',

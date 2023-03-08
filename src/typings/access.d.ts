@@ -3,8 +3,6 @@ declare namespace Access {
     id: string;
     account: string;
     name?: string;
-    access: number;
-    role?: string;
     avatar?: string;
   };
   type StatusResult = {
