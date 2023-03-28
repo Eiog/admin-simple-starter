@@ -93,7 +93,7 @@ export default defineConfig(() => {
         runtimeOnly: true,
         compositionOnly: true,
         fullInstall: true,
-        include: resolve(__dirname, './src/i18n/**'),
+        include: resolve(__dirname, './src/locales/**'),
       }),
       Markdown({
         wrapperClasses: 'prose prose-sm m-auto text-left',
@@ -183,7 +183,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '~': resolve(__dirname, './src'), // 路径别名
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
       },
     },
   }
