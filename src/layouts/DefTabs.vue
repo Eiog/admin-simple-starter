@@ -51,8 +51,8 @@ const options: DropdownOption[] = [
 </script>
 
 <template>
-  <div wfull h-40px flex items-center gap2 px3>
-    <b-scroll ref="bsScrollRef">
+  <div wfull h-40px flex items-center gap2 px3 border-b>
+    <b-scroll>
       <n-tag
         v-for="(item, index) in authTabs"
         :key="index"

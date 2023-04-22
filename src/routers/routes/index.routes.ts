@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { markRaw } from 'vue'
-import layout from '~/layouts/default.vue'
+import layout from '~/layouts/DefLayout.vue'
 import analysis from '~/views/index/analysis.vue'
 import RiCpuFill from '~icons/ri/cpu-fill'
 import RiBubbleChartFill from '~icons/ri/bubble-chart-fill'

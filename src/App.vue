@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { naiveThemeMode, naiveThemeOverrides, naiveLocale, naiveDateLocale }
+  = storeToRefs(useAppStore())
+
 useHead({
   title: 'vue3 starter',
   meta: [
@@ -19,7 +22,18 @@ useHead({
 </script>
 
 <template>
-  <RouterView />
+  <naive-provider
+    :theme="naiveThemeMode"
+    :theme-overrides="naiveThemeOverrides"
+    :locale="naiveLocale"
+    :date-locale="naiveDateLocale"
+  >
+    <router-view v-slot="{ Component }">
+      <transition mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </naive-provider>
 </template>
 
 <style>

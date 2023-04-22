@@ -1,11 +1,16 @@
 <script setup lang="ts">
 const { darkMode } = storeToRefs(useAppStore())
+function toggleDark(e: MouseEvent) {
+  useToggleDark(e, (dark) => {
+    darkMode.value = !dark
+  })
+}
 </script>
 
 <template>
   <n-tooltip trigger="hover">
     <template #trigger>
-      <n-button quaternary @click="darkMode = !darkMode">
+      <n-button quaternary @click="toggleDark">
         <i text-xl :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'" />
       </n-button>
     </template>

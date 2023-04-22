@@ -16,16 +16,21 @@ watch(
 </script>
 
 <template>
-  <n-menu
-    :collapsed="sideCollapsed"
-    :collapsed-width="layoutOption.sider.collapsedWidth"
-    :collapsed-icon-size="26"
-    :inverted="darkMode"
-    mode="vertical"
-    :options="authMenu"
-    :value="path"
-    @update:value="handleClick"
-  />
+  <div flex-1 min-h-0>
+    <n-scrollbar>
+      <n-menu
+        :collapsed="sideCollapsed"
+        :collapsed-width="layoutOption.sider.collapsedWidth"
+        :collapsed-icon-size="26"
+        :inverted="darkMode"
+        :indent="24"
+        mode="vertical"
+        :options="authMenu"
+        :value="path"
+        @update:value="handleClick"
+      />
+    </n-scrollbar>
+  </div>
 </template>
 
 <style scoped lang="less"></style>

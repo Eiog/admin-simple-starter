@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { markRaw } from 'vue'
-import layout from '~/layouts/default.vue'
+import layout from '~/layouts/DefLayout.vue'
 import RiSwordFill from '~icons/ri/sword-fill'
 import RiAdminFill from '~icons/ri/admin-fill'
 const routes: RouteRecordRaw[] = [
