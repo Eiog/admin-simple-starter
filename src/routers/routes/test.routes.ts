@@ -4,6 +4,7 @@ import layout from '~/layouts/DefLayout.vue'
 import RiSwordFill from '~icons/ri/sword-fill'
 import RiAdminFill from '~icons/ri/admin-fill'
 import RiFolderSettingsFill from '~icons/ri/folder-settings-fill'
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/test',

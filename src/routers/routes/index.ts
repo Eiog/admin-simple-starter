@@ -3,6 +3,7 @@ import indexRoutes from './index.routes'
 import textRoutes from './test.routes'
 import accessRoutes from './access-test.routes'
 import loginRoutes from './login.routes'
+
 const routes: RouteRecordRaw[] = [
   ...indexRoutes,
   ...textRoutes,

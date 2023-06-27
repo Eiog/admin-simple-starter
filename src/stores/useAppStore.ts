@@ -10,6 +10,7 @@ import {
   zhCN,
 } from 'naive-ui'
 import { getSatusColor } from './helps'
+
 export const useAppStore = defineStore(
   'appStore',
   () => {

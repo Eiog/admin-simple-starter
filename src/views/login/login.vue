@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui'
 import md5 from 'md5'
+
 const { token, refreshed, userInfo, access } = storeToRefs(useAccessStore())
 const formValue = ref({
   account: 'admin',
@@ -48,7 +49,7 @@ const rules: FormRules = {
 
 const redirect = (useRoute().query.redirect as string) || '/'
 const router = useRouter()
-const handleLogin = async () => {
+async function handleLogin() {
   try {
     const result = await loginApi.login(fromValueComputed.value)
     userInfo.value = result.userInfo
@@ -65,7 +66,7 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
-const handleVerify = () => {
+function handleVerify() {
   loading.value = true
   formRef.value?.validate((err) => {
     if (err) {

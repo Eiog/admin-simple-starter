@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'naive-ui'
 import { NAvatar } from 'naive-ui'
+
 const { userInfo, refreshed, token } = storeToRefs(useAccessStore())
 const router = useRouter()
-const handleLogOut = () => {
+function handleLogOut() {
   token.value = undefined
   refreshed.value = false
   router.push('/login')
@@ -58,7 +59,7 @@ const options: DropdownOption[] = [
     },
   },
 ]
-const handleSelect = () => {}
+function handleSelect() {}
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { BSRef } from '~/hooks/useBScroll'
+import type { BSRef } from '~/composables/useBScroll'
+
 export interface BScrollExpose {
   bsRef: BSRef
   scrollBy: BSRef['value']['scrollBy']
@@ -7,7 +8,7 @@ export interface BScrollExpose {
   scrollToElement: BSRef['value']['scrollToElement']
 }
 const { domRef, bsRef, scrollBy, scrollTo, scrollToElement } = useBScroll()
-const handleScrollStep = (num: number) => {
+function handleScrollStep(num: number) {
   if (!bsRef.value)
     return
   scrollBy(num, 0, 500)

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'naive-ui'
 import MessageDroupdownPanel from './MessageDroupdownPanel.vue'
+
 const options: DropdownOption[] = [
   {
     key: 'render',

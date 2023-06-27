@@ -25,7 +25,7 @@ const colorList = [
   { name: '丁香色', color: '#cca4e3' },
   { name: '鸦青', color: '#424c50' },
 ]
-const handleMoreClick = () => {
+function handleMoreClick() {
   window.$message.info('更多颜色')
 }
 </script>

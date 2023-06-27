@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'naive-ui'
+
 const { tabs, authTabs, currentTabPath, authTabIndex } = storeToRefs(
   useAccessStore(),
 )
 const { refresh } = useAccessStore()
 const router = useRouter()
-const handleClick = (path?: string) => {
+function handleClick(path?: string) {
   if (!path)
     return
   router.push(path)
 }
-const handleClose = (path: string) => {
+function handleClose(path: string) {
   if (authTabs.value.length <= 1)
     return
   const removeIndex = tabs.value.findIndex(item => item.path === path)

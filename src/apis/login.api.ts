@@ -8,19 +8,11 @@ const result = {
   access: [0, 1, 2, 3],
   token: '0ACdd3EF-E9DA-81d1-4eD8-Ccb6ed6d4f5e',
 }
-const login: (param: Access.LoginParam) => Promise<typeof result> = (param: Access.LoginParam) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      return resolve(result)
-    }, 2000)
-  })
+function login(param: Access.LoginParam): Promise<typeof result> {
+  return post<typeof result>('/login', param)
 }
-const status: (param: Access.StatusParam) => Promise<typeof result> = (param: Access.StatusParam) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      return resolve(result)
-    }, 2000)
-  })
+function status(param: Access.StatusParam) {
+  return get<typeof result>('/status', param)
 }
 export const loginApi = {
   login,

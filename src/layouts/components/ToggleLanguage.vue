@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { language } = storeToRefs(useAppStore())
-const changeLanguage = () => {
+function changeLanguage() {
   language.value = language.value === 'zh_cn' ? 'en_us' : 'zh_cn'
 }
 </script>

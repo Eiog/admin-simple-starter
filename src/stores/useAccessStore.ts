@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import type { Component } from 'vue'
 import { routes2Menu, verifyAccess, verifyAuth } from './helps'
 import routes from '~/routers/routes'
+
 interface Tab {
   title?: string
   path: string

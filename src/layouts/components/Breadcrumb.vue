@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { RouteLocationMatched } from 'vue-router'
 import type { DropdownOption } from 'naive-ui'
+
 const route = useRoute()
 const router = useRouter()
-const matched2dropdown = (matched: RouteLocationMatched[]) => {
+function matched2dropdown(matched: RouteLocationMatched[]) {
   const result: DropdownOption[] = []
   matched.forEach((item) => {
     const data: DropdownOption = {
@@ -48,13 +49,13 @@ watch(
         :options="item.children"
       >
         <div flex-center gap1 leading-none>
-          <component :is="item.icon" />
+          <component :is="item.icon as unknown" />
           <span>{{ item.label }}</span>
           <i i-ri-arrow-down-s-line />
         </div>
       </n-dropdown>
       <div v-else flex-center gap1 leading-none>
-        <component :is="item.icon" />
+        <component :is="item.icon as unknown" />
         <span>{{ item.label }}</span>
       </div>
     </n-breadcrumb-item>

@@ -4,7 +4,7 @@ const { authMenu } = storeToRefs(useAccessStore())
 const route = useRoute()
 const path = ref(route.path)
 const router = useRouter()
-const handleClick = (key: string) => {
+function handleClick(key: string) {
   router.push(key)
 }
 watch(

@@ -3,14 +3,15 @@ import type { MenuOption } from 'naive-ui'
 import { NIcon } from 'naive-ui'
 import _ from 'lodash-es'
 import { colord } from 'colord'
-export const verifyAccess = (requireAccess?: number[], access?: number[]) => {
+
+export function verifyAccess(requireAccess?: number[], access?: number[]) {
   if (!access || !Array.isArray(access))
     return false
   if (!requireAccess)
     return true
   return access.some(item => requireAccess.includes(item))
 }
-export const verifyAuth = (routes: RouteRecordRaw[], access?: number[]) => {
+export function verifyAuth(routes: RouteRecordRaw[], access?: number[]) {
   const authRoutes: RouteRecordRaw[] = []
   routes.forEach((route) => {
     const requireAccess = route.meta?.access
@@ -23,13 +24,13 @@ export const verifyAuth = (routes: RouteRecordRaw[], access?: number[]) => {
   })
   return authRoutes
 }
-const renderIcon = (icon?: RouteRecordRaw) => {
+function renderIcon(icon?: RouteRecordRaw) {
   const iconComponent = icon?.meta?.icon
   return iconComponent
     ? h(NIcon, null, { default: () => h(iconComponent) })
     : undefined
 }
-export const routes2Menu = (routes: RouteRecordRaw[]) => {
+export function routes2Menu(routes: RouteRecordRaw[]) {
   const authMenu: MenuOption[] = []
   routes = routes.sort((a, b) => {
     return (a.meta && b.meta && a.meta.sort && b.meta.sort)
@@ -75,7 +76,7 @@ export const routes2Menu = (routes: RouteRecordRaw[]) => {
   return authMenu
 }
 
-export const keepAliveName = (routes: RouteRecordRaw[]) => {
+export function keepAliveName(routes: RouteRecordRaw[]) {
   const keepAliveNames: string[] = []
   routes.forEach((route) => {
     if (route.meta?.keepAlive && route.name)
@@ -85,7 +86,7 @@ export const keepAliveName = (routes: RouteRecordRaw[]) => {
   })
   return keepAliveNames
 }
-export const getSatusColor = (color = '#ff461f') => {
+export function getSatusColor(color = '#ff461f') {
   return {
     color,
     hover: colord(color).lighten(0.1).toHex(),

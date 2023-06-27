@@ -1,11 +1,10 @@
 import { resolve } from 'node:path'
-import type { Plugin } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver, VueUseComponentsResolver, VueUseDirectiveResolver, Vuetify3Resolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -14,12 +13,13 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
-import mockApp from './api'
+import Inspect from 'vite-plugin-inspect'
+import { webUpdateNotice } from '@plugin-web-update-notification/vite'
+import { vercelMock } from './plugin/vitePluginMockVercel'
 
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -41,32 +41,26 @@ function configManualChunk(id: string) {
     return matchItem ? matchItem.output : null
   }
 }
-function mock(): Plugin {
-  return {
-    name: 'mock',
-    configureServer: async (server) => {
-    // mount mock server, `/api` is the base url
-      server.middlewares.use('/api', mockApp)
-    },
-  }
-}
 // eslint-disable-next-line unused-imports/no-unused-vars
 export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
 
   return {
     plugins: [
-      mock(),
+      Inspect(),
+      vercelMock(),
       // https://github.com/hannoeru/vite-plugin-pages
       Pages({
         extensions: ['vue', 'md'],
       }),
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
-      DefineOptions(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
+      }),
+      webUpdateNotice({
+        logVersion: true,
       }),
       vue(),
       vueJsx(),
@@ -112,7 +106,12 @@ export default defineConfig(({ command, mode }) => {
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         dts: 'src/typings/components.d.ts',
-        resolvers: [NaiveUiResolver()],
+        resolvers: [
+          NaiveUiResolver(),
+          Vuetify3Resolver(),
+          VueUseComponentsResolver(),
+          VueUseDirectiveResolver(),
+        ],
       }),
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config
@@ -150,8 +149,9 @@ export default defineConfig(({ command, mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
         manifest: {
-          name: 'vue3-starter',
-          short_name: 'vue3-starter',
+          name: VITE_APP_NAME,
+          short_name: VITE_APP_NAME,
+          description: VITE_APP_DESCRIPTION,
           theme_color: '#ffffff',
           icons: [
             {
@@ -186,13 +186,13 @@ export default defineConfig(({ command, mode }) => {
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
-      proxy: {
-        '/api': {
-          target: 'https://mock.apifox.cn/m1/476417-0-default',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
-        },
-      },
+      // proxy: {
+      //   '/api': {
+      //     target: 'https://mock.apifox.cn/m1/476417-0-default',
+      //     changeOrigin: true,
+      //     rewrite: path => path.replace(/^\/api/, ''),
+      //   },
+      // },
     },
     build: {
       minify: 'esbuild',
@@ -221,6 +221,12 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '~': resolve(__dirname, './src'), // 路径别名
         'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+      },
+    },
+    css: {
+      modules: {
+        localsConvention: 'camelCase',
+        scopeBehaviour: 'local',
       },
     },
   }
