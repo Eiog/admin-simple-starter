@@ -11,5 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-/auto-import.d.ts
-/components.d.ts
+src/typings/auto-import.d.ts
+src/typings/components.d.ts
+.vercel

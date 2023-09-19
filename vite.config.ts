@@ -8,7 +8,7 @@ import { NaiveUiResolver, VueUseComponentsResolver, VueUseDirectiveResolver, Vue
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import Markdown from 'vite-plugin-vue-markdown'
+import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
@@ -16,10 +16,13 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
-import Inspector from 'unplugin-vue-inspector/vite'
-import Inspect from 'vite-plugin-inspect'
+import VueDevTools from 'vite-plugin-vue-devtools'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
-import { vercelMock } from './plugin/vitePluginMockVercel'
+import postcssPresetEnv from 'postcss-preset-env'
+import virtual from 'vite-plugin-virtual'
+import { vitePluginVersionMark } from 'vite-plugin-version-mark'
+import { viteVueCSSVars } from 'unplugin-vue-cssvars'
+import { VitePluginMock } from './plugin'
 
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -43,12 +46,17 @@ function configManualChunk(id: string) {
 }
 // eslint-disable-next-line unused-imports/no-unused-vars
 export default defineConfig(({ command, mode }) => {
-  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
 
   return {
     plugins: [
-      Inspect(),
-      vercelMock(),
+      VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+
+      virtual({
+        'virtual:module': 'export default { mode: \'web\' }',
+      }), // https://github.com/patak-dev/vite-plugin-virtual
+
+      VitePluginMock({ prefix: VITE_API_BASE_PREFIX }),
       // https://github.com/hannoeru/vite-plugin-pages
       Pages({
         extensions: ['vue', 'md'],
@@ -62,14 +70,34 @@ export default defineConfig(({ command, mode }) => {
       webUpdateNotice({
         logVersion: true,
       }),
-      vue(),
+      vitePluginVersionMark({
+        // name: 'test-app',
+        // version: '0.0.1',
+        // command: 'git describe --tags',
+        ifGitSHA: true,
+        ifShortSHA: true,
+        ifMeta: true,
+        ifLog: true,
+        ifGlobal: true,
+      }), // https://github.com/ZhongxuYang/vite-plugin-version-mark
+
+      vue({
+        script: {
+          defineModel: true,
+        },
+        include: [/\.vue$/, /\.md$/],
+      }),
       vueJsx(),
       // https://github.com/feat-agency/vite-plugin-webfont-dl
+
+      viteVueCSSVars({
+        include: [/.vue/],
+        includeCompile: ['**/**.scss'],
+        server: false,
+      }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
+
       WebfontDownload(),
       // https://github.com/webfansplz/vite-plugin-vue-inspector
-      Inspector({
-        toggleButtonVisibility: 'never',
-      }),
       Icons({ compiler: 'vue3' }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
@@ -180,19 +208,20 @@ export default defineConfig(({ command, mode }) => {
         },
       }),
     ],
+    clearScreen: true,
     server: {
       port: Number(VITE_DEV_PORT),
       host: true, // host设置为true才可以使用network的形式，以ip访问项目
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
-      // proxy: {
-      //   '/api': {
-      //     target: 'https://mock.apifox.cn/m1/476417-0-default',
-      //     changeOrigin: true,
-      //     rewrite: path => path.replace(/^\/api/, ''),
-      //   },
-      // },
+      proxy: {
+        [VITE_API_BASE_PREFIX]: {
+          target: VITE_API_BASE_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
+        },
+      },
     },
     build: {
       minify: 'esbuild',
@@ -227,6 +256,11 @@ export default defineConfig(({ command, mode }) => {
       modules: {
         localsConvention: 'camelCase',
         scopeBehaviour: 'local',
+      },
+      postcss: {
+        plugins: [
+          postcssPresetEnv(),
+        ],
       },
     },
   }
